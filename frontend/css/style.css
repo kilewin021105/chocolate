@@ -1,0 +1,1963 @@
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: #f6f2eb;
+    color: #2c241d;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================================
+   LOGIN SCREEN
+   ========================================================= */
+
+.login-screen {
+    position: relative;
+
+    min-height: 100vh;
+    width: 100%;
+
+    /*
+     * Keep the same background for
+     * Sign In and Sign Up.
+     */
+
+    overflow: hidden;
+
+    background-image:
+        linear-gradient(
+            rgba(20, 10, 5, 0.35),
+            rgba(20, 10, 5, 0.50)
+        ),
+        url("/assets/DalareichChocolateHauz.jpg");
+
+    background-size: cover;
+
+    background-position:
+        center center;
+
+    background-repeat: no-repeat;
+
+    background-attachment: fixed;
+
+    /*
+     * Cards are manually centered.
+     * This prevents horizontal movement
+     * between Sign In and Sign Up.
+     */
+
+    display: block;
+}
+
+
+/* =========================================================
+   LOGIN BACKGROUND OVERLAY
+   ========================================================= */
+
+.login-screen::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.05),
+            rgba(0, 0, 0, 0.20)
+        );
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   LOGIN CARD
+   ========================================================= */
+
+.login-card {
+    position: absolute;
+
+    z-index: 2;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    margin: 0;
+
+    width:
+        min(420px, 92vw);
+
+    /*
+     * Keep Sign In card inside viewport.
+     */
+
+    max-height:
+        calc(100vh - 40px);
+
+    /*
+     * If necessary, content can scroll
+     * without moving the card.
+     */
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    padding: 36px;
+
+    /*
+     * BLURRY GLASS EFFECT
+     */
+
+    background:
+        rgba(255, 255, 255, 0.20);
+
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.35);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 25px 80px
+        rgba(0, 0, 0, 0.35),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.25);
+
+    color: #ffffff;
+
+    /*
+     * Scrollbar stays inside the card.
+     */
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        rgba(255, 255, 255, 0.45)
+        transparent;
+}
+
+
+/* =========================================================
+   LOGIN CARD SCROLLBAR
+   ========================================================= */
+
+.login-card::-webkit-scrollbar {
+    width: 7px;
+}
+
+.login-card::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.login-card::-webkit-scrollbar-thumb {
+    background:
+        rgba(255, 255, 255, 0.45);
+
+    border-radius: 10px;
+}
+
+.login-card::-webkit-scrollbar-thumb:hover {
+    background:
+        rgba(255, 255, 255, 0.65);
+}
+
+
+/* =========================================================
+   SIGN UP CARD
+   FIXED CENTER + INTERNAL SCROLL
+   ========================================================= */
+
+.signup-card {
+    position: absolute !important;
+
+    z-index: 2;
+
+    /*
+     * EXACT CENTER POSITION
+     */
+
+    top: 50% !important;
+
+    left: 50% !important;
+
+    transform:
+        translate(-50%, -50%) !important;
+
+    margin: 0 !important;
+
+    width:
+        min(420px, 92vw);
+
+    /*
+     * IMPORTANT:
+     *
+     * The card can NEVER become taller
+     * than the browser window.
+     */
+
+    max-height:
+        calc(100vh - 40px);
+
+    /*
+     * The contents scroll INSIDE the card.
+     *
+     * The card itself stays in the same
+     * position.
+     */
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    /*
+     * Slightly smaller padding because
+     * Sign Up contains more fields.
+     */
+
+    padding:
+        30px 36px;
+
+    /*
+     * BLURRY / GLASS CARD
+     */
+
+    background:
+        rgba(255, 255, 255, 0.20);
+
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.35);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 25px 80px
+        rgba(0, 0, 0, 0.35),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.25);
+
+    color: #ffffff;
+
+    /*
+     * Scrollbar stays INSIDE the card.
+     */
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        rgba(255, 255, 255, 0.45)
+        transparent;
+}
+
+
+/* =========================================================
+   SIGN UP CARD SCROLLBAR
+   ========================================================= */
+
+.signup-card::-webkit-scrollbar {
+    width: 7px;
+}
+
+.signup-card::-webkit-scrollbar-track {
+    background:
+        transparent;
+}
+
+.signup-card::-webkit-scrollbar-thumb {
+    background:
+        rgba(255, 255, 255, 0.45);
+
+    border-radius:
+        10px;
+}
+
+.signup-card::-webkit-scrollbar-thumb:hover {
+    background:
+        rgba(255, 255, 255, 0.65);
+}
+
+
+/* =========================================================
+   BAHAY KUBO LOGIN ICON
+   ========================================================= */
+
+.brand-mark {
+    width: 70px;
+
+    height: 65px;
+
+    margin:
+        0 auto 12px;
+
+    display: grid;
+
+    place-items: center;
+
+    background:
+        transparent;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+
+    font-size: 50px;
+
+    line-height: 1;
+
+    text-align: center;
+
+    filter:
+        drop-shadow(
+            0 4px 6px
+            rgba(0, 0, 0, 0.30)
+        );
+}
+
+
+/* =========================================================
+   LOGIN TITLE
+   ========================================================= */
+
+.login-card h1 {
+    margin:
+        10px 0 20px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 30px;
+
+    line-height: 1.15;
+
+    font-weight: 700;
+
+    color: #ffffff;
+
+    text-align: center;
+
+    text-shadow:
+        0 2px 7px
+        rgba(0, 0, 0, 0.40);
+}
+
+
+/* =========================================================
+   SIGN UP DESCRIPTION
+   ========================================================= */
+
+.signup-description {
+    margin:
+        -8px 0 22px;
+
+    color:
+        rgba(255, 255, 255, 0.88);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    text-align: center;
+
+    text-shadow:
+        0 1px 4px
+        rgba(0, 0, 0, 0.30);
+}
+
+
+/* =========================================================
+   LOGIN FORM
+   ========================================================= */
+
+.login-card label {
+    display: block;
+
+    margin:
+        18px 0;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-shadow:
+        0 1px 4px
+        rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================================
+   LOGIN INPUTS
+   ========================================================= */
+
+.login-card input {
+    width: 100%;
+
+    padding:
+        12px 14px;
+
+    margin-top: 7px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.40);
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background:
+        rgba(255, 255, 255, 0.18);
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    backdrop-filter:
+        blur(5px);
+
+    -webkit-backdrop-filter:
+        blur(5px);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* =========================================================
+   INPUT PLACEHOLDER
+   ========================================================= */
+
+.login-card input::placeholder {
+    color:
+        rgba(255, 255, 255, 0.70);
+}
+
+
+/* =========================================================
+   INPUT FOCUS
+   ========================================================= */
+
+.login-card input:focus {
+    background:
+        rgba(255, 255, 255, 0.25);
+
+    border-color:
+        rgba(255, 255, 255, 0.80);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(255, 255, 255, 0.10);
+}
+
+
+/* =========================================================
+   PASSWORD FIELD
+   ========================================================= */
+
+.password-wrapper {
+    position: relative;
+
+    width: 100%;
+}
+
+
+.password-wrapper input {
+    width: 100%;
+
+    padding-right: 48px;
+}
+
+
+/* =========================================================
+   PASSWORD SHOW / HIDE BUTTON
+   ========================================================= */
+
+.password-toggle {
+    position: absolute;
+
+    right: 10px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    width: 32px;
+
+    height: 32px;
+
+    padding: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: none;
+
+    background:
+        transparent;
+
+    color: #ffffff;
+
+    font-size: 17px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    border-radius: 6px;
+
+    opacity: 0.85;
+
+    transition:
+        background 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.password-toggle:hover {
+    background:
+        rgba(255, 255, 255, 0.15);
+
+    opacity: 1;
+}
+
+
+.password-toggle:focus {
+    outline: none;
+
+    background:
+        rgba(255, 255, 255, 0.15);
+}
+
+
+/* =========================================================
+   GENERAL BUTTONS
+   ========================================================= */
+
+.primary,
+.danger,
+.secondary,
+.logout {
+    border: 0;
+
+    border-radius: 10px;
+
+    padding:
+        11px 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
+
+.primary {
+    background:
+        #6f3f20;
+
+    color:
+        #ffffff;
+}
+
+
+/* =========================================================
+   LOGIN / SIGNUP PRIMARY BUTTON
+   ========================================================= */
+
+.login-card .primary {
+    display: block;
+
+    width: 160px;
+
+    margin:
+        30px auto 0;
+
+    padding:
+        12px 20px;
+
+    background:
+        rgba(111, 63, 32, 0.90);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.25);
+
+    border-radius:
+        10px;
+
+    color:
+        #ffffff;
+
+    font-size:
+        14px;
+
+    font-weight:
+        700;
+
+    text-align:
+        center;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0, 0, 0, 0.20);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.login-card .primary:hover {
+    background:
+        rgba(111, 63, 32, 1);
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+.login-card .primary:active {
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   SIGN UP TEXT
+   ========================================================= */
+
+.signup-text {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin-top: 18px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    text-align: center;
+
+    text-shadow:
+        0 1px 4px
+        rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================================
+   SIGN UP LINK
+   ========================================================= */
+
+.signup-link {
+    display: inline;
+
+    width: auto;
+
+    margin: 0;
+
+    padding: 0;
+
+    background:
+        transparent !important;
+
+    border:
+        none !important;
+
+    border-radius: 0;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    text-decoration: underline;
+
+    text-decoration-thickness: 1px;
+
+    text-underline-offset: 3px;
+
+    cursor: pointer;
+
+    box-shadow:
+        none !important;
+
+    outline: none;
+
+    transition:
+        color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.signup-link:hover {
+    background:
+        transparent !important;
+
+    color:
+        #f0d2b5;
+
+    box-shadow:
+        none !important;
+}
+
+
+.signup-link:active {
+    background:
+        transparent !important;
+
+    color:
+        #e4bd98;
+
+    transform:
+        none;
+
+    box-shadow:
+        none !important;
+}
+
+
+.signup-link:focus {
+    background:
+        transparent !important;
+
+    outline:
+        none;
+
+    box-shadow:
+        0 2px 0
+        rgba(255, 255, 255, 0.70) !important;
+}
+
+
+/* =========================================================
+   LOGIN ERROR
+   ========================================================= */
+
+.error {
+    color:
+        #ffd0d0;
+
+    margin-top:
+        10px;
+
+    font-size:
+        13px;
+
+    text-align:
+        center;
+
+    text-shadow:
+        0 1px 3px
+        rgba(0, 0, 0, 0.30);
+}
+
+
+/* =========================================================
+   APPLICATION SHELL
+   ========================================================= */
+
+.app-shell {
+    display: flex;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+    width: 245px;
+
+    background:
+        #2b1b12;
+
+    color:
+        #ffffff;
+
+    padding:
+        22px 16px;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+/* =========================================================
+   SIDEBAR BRAND
+   ========================================================= */
+
+.side-brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   BAHAY KUBO SIDEBAR ICON
+   ========================================================= */
+
+.side-brand .house-icon {
+    width: 42px;
+
+    height: 42px;
+
+    display: grid;
+
+    place-items: center;
+
+    background:
+        transparent;
+
+    border: none;
+
+    border-radius: 0;
+
+    font-size: 28px;
+
+    line-height: 1;
+
+    filter:
+        drop-shadow(
+            0 2px 3px
+            rgba(0, 0, 0, 0.30)
+        );
+}
+
+
+.side-brand strong {
+    display: block;
+
+    font-size: 15px;
+}
+
+
+.side-brand small {
+    display: block;
+
+    color:
+        #cbb9aa;
+
+    font-size: 12px;
+
+    margin-top: 2px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.nav {
+    display: block;
+
+    width: 100%;
+
+    text-align: left;
+
+    background:
+        transparent;
+
+    border: 0;
+
+    color:
+        #d9cabe;
+
+    padding:
+        13px 14px;
+
+    border-radius:
+        10px;
+
+    margin:
+        3px 0;
+
+    cursor:
+        pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.nav.active,
+.nav:hover {
+    background:
+        #51301e;
+
+    color:
+        #ffffff;
+}
+
+
+/* =========================================================
+   SIDEBAR BOTTOM
+   ========================================================= */
+
+.side-bottom {
+    margin-top:
+        auto;
+}
+
+
+.logout {
+    width:
+        100%;
+
+    background:
+        #4a2a1c;
+
+    color:
+        #ffffff;
+
+    transition:
+        background 0.2s ease;
+}
+
+
+.logout:hover {
+    background:
+        #613723;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.main {
+    flex: 1;
+
+    padding:
+        26px 32px;
+
+    overflow:
+        auto;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+header {
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    margin-bottom:
+        25px;
+}
+
+
+.eyebrow {
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        2px;
+
+    color:
+        #a06b3b;
+}
+
+
+h2 {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        30px;
+
+    margin:
+        5px 0;
+}
+
+
+.status {
+    font-size:
+        12px;
+
+    background:
+        #e8f5e9;
+
+    color:
+        #28723a;
+
+    padding:
+        8px 12px;
+
+    border-radius:
+        999px;
+}
+
+
+/* =========================================================
+   DASHBOARD GRID
+   ========================================================= */
+
+.grid {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        16px;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card {
+    background:
+        #fffdf9;
+
+    border:
+        1px solid
+        #e9dfd4;
+
+    border-radius:
+        16px;
+
+    padding:
+        20px;
+
+    box-shadow:
+        0 4px 18px
+        rgba(59, 36, 18, 0.04);
+}
+
+
+.metric {
+    font-size:
+        28px;
+
+    font-weight:
+        800;
+
+    margin-top:
+        8px;
+}
+
+
+.muted {
+    color:
+        #83776c;
+
+    font-size:
+        13px;
+}
+
+
+.low {
+    color:
+        #b54708;
+
+    font-weight:
+        800;
+}
+
+
+/* =========================================================
+   SECTION TITLE
+   ========================================================= */
+
+.section-title {
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    margin:
+        28px 0 12px;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.table-wrap {
+    overflow:
+        auto;
+
+    background:
+        #fffdf9;
+
+    border:
+        1px solid
+        #e9dfd4;
+
+    border-radius:
+        14px;
+}
+
+
+.table {
+    width:
+        100%;
+
+    border-collapse:
+        collapse;
+}
+
+
+.table th,
+.table td {
+    padding:
+        13px 14px;
+
+    border-bottom:
+        1px solid
+        #eee5dc;
+
+    text-align:
+        left;
+
+    font-size:
+        13px;
+}
+
+
+.table th {
+    background:
+        #f5eee6;
+
+    color:
+        #6b5a4c;
+}
+
+
+/* =========================================================
+   TOOLBAR
+   ========================================================= */
+
+.toolbar {
+    display:
+        flex;
+
+    gap:
+        10px;
+
+    flex-wrap:
+        wrap;
+
+    margin-bottom:
+        14px;
+}
+
+
+.toolbar input,
+.toolbar select {
+    padding:
+        11px;
+
+    border:
+        1px solid
+        #ddd2c5;
+
+    border-radius:
+        10px;
+
+    background:
+        #ffffff;
+}
+
+
+/* =========================================================
+   SECONDARY BUTTON
+   ========================================================= */
+
+.secondary {
+    background:
+        #eee4d8;
+
+    color:
+        #4d3829;
+}
+
+
+.secondary:hover {
+    background:
+        #e3d6c7;
+}
+
+
+/* =========================================================
+   DANGER BUTTON
+   ========================================================= */
+
+.danger {
+    background:
+        #f8d7d2;
+
+    color:
+        #8d2016;
+}
+
+
+.danger:hover {
+    background:
+        #f2c4bd;
+}
+
+
+/* =========================================================
+   POS GRID
+   ========================================================= */
+
+.pos-grid {
+    display:
+        grid;
+
+    grid-template-columns:
+        1.5fr 1fr;
+
+    gap:
+        18px;
+}
+
+
+/* =========================================================
+   PRODUCT GRID
+   ========================================================= */
+
+.product-grid {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        12px;
+}
+
+
+.product-card {
+    cursor:
+        pointer;
+
+    border:
+        1px solid
+        #e7dbcf;
+
+    border-radius:
+        14px;
+
+    padding:
+        15px;
+
+    background:
+        #ffffff;
+
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.product-card:hover {
+    border-color:
+        #a56b3d;
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 5px 15px
+        rgba(59, 36, 18, 0.08);
+}
+
+
+.product-card strong {
+    display:
+        block;
+
+    margin-bottom:
+        6px;
+}
+
+
+.price {
+    font-weight:
+        800;
+
+    color:
+        #6f3f20;
+}
+
+
+/* =========================================================
+   CART
+   ========================================================= */
+
+.cart-row {
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    gap:
+        10px;
+
+    padding:
+        12px 0;
+
+    border-bottom:
+        1px solid
+        #eee5dc;
+}
+
+
+.cart-total {
+    font-size:
+        22px;
+
+    font-weight:
+        800;
+
+    margin:
+        18px 0;
+}
+
+
+/* =========================================================
+   RECEIPT
+   ========================================================= */
+
+.receipt {
+    background:
+        #fbf8f3;
+
+    border:
+        1px dashed
+        #cdbca9;
+
+    padding:
+        18px;
+
+    border-radius:
+        12px;
+
+    margin-top:
+        15px;
+}
+
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.modal {
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    background:
+        rgba(0, 0, 0, 0.47);
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    padding:
+        20px;
+}
+
+
+.modal > div {
+    background:
+        #fffdf9;
+
+    width:
+        min(520px, 95vw);
+
+    padding:
+        24px;
+
+    border-radius:
+        18px;
+}
+
+
+/* =========================================================
+   MODAL INPUTS
+   ========================================================= */
+
+.modal input,
+.modal select {
+    width:
+        100%;
+
+    padding:
+        12px;
+
+    border:
+        1px solid
+        #ddd2c5;
+
+    border-radius:
+        10px;
+
+    margin-top:
+        7px;
+
+    background:
+        #ffffff;
+}
+
+
+/* =========================================================
+   FORM GRID
+   ========================================================= */
+
+.form-grid {
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        12px;
+}
+
+
+.form-grid label {
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+}
+
+
+.form-grid .full {
+    grid-column:
+        1 / -1;
+}
+
+
+/* =========================================================
+   TABLET RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .grid {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .pos-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .sidebar {
+        width:
+            200px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .app-shell {
+        display:
+            block;
+    }
+
+    .sidebar {
+        width:
+            100%;
+    }
+
+    .main {
+        padding:
+            18px;
+    }
+
+    .grid,
+    .product-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .form-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    /* =====================================================
+       SAME BACKGROUND FOR SIGN IN AND SIGN UP
+       ===================================================== */
+
+    .login-screen {
+        background-size:
+            cover;
+
+        background-position:
+            center center;
+
+        background-attachment:
+            scroll;
+    }
+
+
+    /* =====================================================
+       KEEP BOTH CARDS CENTERED
+       ===================================================== */
+
+    .login-card,
+    .signup-card {
+        width:
+            min(420px, 92vw);
+
+        left:
+            50% !important;
+
+        transform:
+            translate(-50%, -50%) !important;
+
+        /*
+         * Never allow card to exceed viewport.
+         */
+
+        max-height:
+            calc(100vh - 30px);
+    }
+
+
+    /* =====================================================
+       SIGN IN CARD
+       ===================================================== */
+
+    .login-card {
+        padding:
+            30px;
+    }
+
+
+    /* =====================================================
+       SIGN UP CARD
+       INTERNAL SCROLLING
+       ===================================================== */
+
+    .signup-card {
+        padding:
+            28px 30px;
+
+        /*
+         * This is the important part.
+         *
+         * The card remains fixed.
+         * Only its contents scroll.
+         */
+
+        overflow-y:
+            auto;
+
+        overflow-x:
+            hidden;
+
+        max-height:
+            calc(100vh - 30px);
+
+        /*
+         * Keep scrollbar inside card.
+         */
+
+        scrollbar-width:
+            thin;
+
+        scrollbar-color:
+            rgba(255, 255, 255, 0.45)
+            transparent;
+    }
+
+
+    /* =====================================================
+       SIGN UP MOBILE SCROLLBAR
+       ===================================================== */
+
+    .signup-card::-webkit-scrollbar {
+        width:
+            6px;
+    }
+
+    .signup-card::-webkit-scrollbar-track {
+        background:
+            transparent;
+    }
+
+    .signup-card::-webkit-scrollbar-thumb {
+        background:
+            rgba(255, 255, 255, 0.45);
+
+        border-radius:
+            10px;
+    }
+
+    .signup-card::-webkit-scrollbar-thumb:hover {
+        background:
+            rgba(255, 255, 255, 0.65);
+    }
+
+
+    /* =====================================================
+       TITLE
+       ===================================================== */
+
+    .login-card h1 {
+        font-size:
+            26px;
+    }
+
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
+
+    header {
+        align-items:
+            flex-start;
+
+        gap:
+            12px;
+
+        flex-direction:
+            column;
+    }
+
+
+    /* =====================================================
+       KEEP SIGN IN / SIGN UP BUTTON MEDIUM
+       ===================================================== */
+
+    .login-card .primary {
+        width:
+            160px;
+
+        margin:
+            30px auto 0;
+    }
+
+
+    /* =====================================================
+       SIGN UP LINK
+       ===================================================== */
+
+    .signup-link {
+        width:
+            auto;
+
+        padding:
+            0;
+
+        margin:
+            0;
+
+        background:
+            transparent !important;
+
+        border:
+            none !important;
+
+        box-shadow:
+            none !important;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .login-card,
+    .signup-card {
+        width:
+            94vw;
+
+        /*
+         * Keep the entire card inside the screen.
+         */
+
+        max-height:
+            calc(100vh - 20px);
+
+        border-radius:
+            18px;
+    }
+
+
+    /* =====================================================
+       SIGN IN
+       ===================================================== */
+
+    .login-card {
+        padding:
+            25px;
+    }
+
+
+    /* =====================================================
+       SIGN UP
+       ===================================================== */
+
+    .signup-card {
+        padding:
+            24px;
+
+        overflow-y:
+            auto;
+
+        overflow-x:
+            hidden;
+    }
+
+
+    /* =====================================================
+       BRAND ICON
+       ===================================================== */
+
+    .brand-mark {
+        width:
+            60px;
+
+        height:
+            55px;
+
+        font-size:
+            44px;
+    }
+
+
+    /* =====================================================
+       TITLE
+       ===================================================== */
+
+    .login-card h1 {
+        font-size:
+            24px;
+    }
+
+
+    /* =====================================================
+       FORM LABELS
+       ===================================================== */
+
+    .login-card label {
+        margin:
+            14px 0;
+    }
+}
+
+
+/* =========================================================
+   FINAL POSITION LOCK
+   ========================================================= */
+
+/*
+ * IMPORTANT:
+ *
+ * Both Sign In and Sign Up stay exactly centered.
+ *
+ * Scrolling the Sign Up contents does NOT move
+ * the card left, right, up, or down.
+ */
+
+.login-card,
+.signup-card {
+    position:
+        absolute !important;
+
+    top:
+        50% !important;
+
+    left:
+        50% !important;
+
+    transform:
+        translate(-50%, -50%) !important;
+
+    margin:
+        0 !important;
+}
+
+
+/* =========================================================
+   FINAL SIGN UP OVERFLOW PROTECTION
+   ========================================================= */
+
+/*
+ * This is intentionally at the very end so that
+ * other rules cannot accidentally make the signup
+ * card taller than the viewport.
+ */
+
+.signup-card {
+    max-height:
+        calc(100vh - 40px);
+
+    overflow-y:
+        auto;
+
+    overflow-x:
+        hidden;
+
+    scrollbar-width:
+        thin;
+
+    scrollbar-color:
+        rgba(255, 255, 255, 0.45)
+        transparent;
+}
+
+
+/* =========================================================
+   FINAL SIGN UP CHROME / EDGE SCROLLBAR
+   ========================================================= */
+
+.signup-card::-webkit-scrollbar {
+    width:
+        7px;
+}
+
+.signup-card::-webkit-scrollbar-track {
+    background:
+        transparent;
+}
+
+.signup-card::-webkit-scrollbar-thumb {
+    background:
+        rgba(255, 255, 255, 0.45);
+
+    border-radius:
+        10px;
+}
+
+.signup-card::-webkit-scrollbar-thumb:hover {
+    background:
+        rgba(255, 255, 255, 0.65);
+}

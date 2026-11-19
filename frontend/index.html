@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>Dalareich Integrated POS</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+    <!-- =====================================================
+         RBAC LOGIN OVERRIDE
+         Only Admin and User are allowed.
+         ===================================================== -->
+
+    <style>
+
+        /* =====================================================
+           LOGIN PASSWORD + RBAC ROW
+           ===================================================== */
+
+        .password-rbac-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 125px;
+            gap: 10px;
+            align-items: end;
+            width: 100%;
+        }
+
+        .password-rbac-row > label {
+            margin: 18px 0 !important;
+            min-width: 0;
+        }
+
+        .rbac-field {
+            margin: 18px 0 !important;
+            min-width: 0;
+        }
+
+        .rbac-field label {
+            display: block;
+            margin: 0 0 7px !important;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+            text-shadow:
+                0 1px 4px
+                rgba(0, 0, 0, 0.35);
+        }
+
+        .rbac-select {
+            width: 100%;
+            height: 42px;
+            padding: 0 10px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.40);
+
+            border-radius: 10px;
+
+            outline: none;
+
+            background:
+                rgba(255, 255, 255, 0.18);
+
+            color: #ffffff;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            backdrop-filter:
+                blur(5px);
+
+            -webkit-backdrop-filter:
+                blur(5px);
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .rbac-select option {
+            background: #3b281d;
+            color: #ffffff;
+        }
+
+        .rbac-select:hover {
+            background:
+                rgba(255, 255, 255, 0.24);
+        }
+
+        .rbac-select:focus {
+            background:
+                rgba(255, 255, 255, 0.25);
+
+            border-color:
+                rgba(255, 255, 255, 0.80);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(255, 255, 255, 0.10);
+        }
+
+        /* =====================================================
+           MOBILE
+           ===================================================== */
+
+        @media (max-width: 500px) {
+
+            .password-rbac-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .password-rbac-row > label,
+            .rbac-field {
+                margin: 14px 0 !important;
+            }
+
+            .rbac-field label {
+                margin-bottom: 7px !important;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         LOGIN VIEW
+         ===================================================== -->
+
+    <div
+        id="loginView"
+        class="login-screen"
+    >
+
+        <div class="login-card">
+
+            <div
+                class="brand-mark"
+                aria-label="Bahay Kubo"
+            >
+                🏠
+            </div>
+
+            <h1>
+                Dalareich Chocolate House
+            </h1>
+
+
+            <form
+                id="loginForm"
+                novalidate
+            >
+
+                <!-- =================================================
+                     EMAIL
+                     ================================================= -->
+
+                <label for="username">
+
+                    Email
+
+                    <input
+                        id="username"
+                        name="email"
+                        type="email"
+                        autocomplete="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </label>
+
+
+                <!-- =================================================
+                     PASSWORD + ROLE
+                     ================================================= -->
+
+                <div class="password-rbac-row">
+
+                    <!-- PASSWORD -->
+
+                    <label for="password">
+
+                        Password
+
+                        <div class="password-wrapper">
+
+                            <input
+                                id="password"
+                                name="password"
+                                type="password"
+                                autocomplete="current-password"
+                                placeholder="Enter your password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                id="togglePassword"
+                                class="password-toggle"
+                                aria-label="Show password"
+                                title="Show password"
+                            >
+                                👁
+                            </button>
+
+                        </div>
+
+                    </label>
+
+
+                    <!-- =================================================
+                         ROLE
+                         ONLY ADMIN AND USER
+                         ================================================= -->
+
+                    <div class="rbac-field">
+
+                        <label for="loginRole">
+                            Role
+                        </label>
+
+                        <select
+                            id="loginRole"
+                            name="role"
+                            class="rbac-select"
+                            required
+                        >
+
+                            <option value="User">
+                                User
+                            </option>
+
+                            <option value="Admin">
+                                Admin
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     SIGN IN
+                     ================================================= -->
+
+                <button
+                    class="primary"
+                    type="submit"
+                    id="signInButton"
+                >
+                    Sign In
+                </button>
+
+
+                <!-- =================================================
+                     SIGN UP LINK
+                     ================================================= -->
+
+                <div class="signup-text">
+
+                    <span>
+                        Don't have an account?
+                    </span>
+
+                    <button
+                        type="button"
+                        id="signUpButton"
+                        class="signup-link"
+                    >
+                        Sign Up
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     LOGIN ERROR
+                     ================================================= -->
+
+                <div
+                    id="loginError"
+                    class="error"
+                    role="alert"
+                    aria-live="polite"
+                ></div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         SIGN UP VIEW
+         ===================================================== -->
+
+    <div
+        id="signupView"
+        class="login-screen hidden"
+    >
+
+        <div class="login-card">
+
+            <div
+                class="brand-mark"
+                aria-label="Bahay Kubo"
+            >
+                🏠
+            </div>
+
+            <h1>
+                Dalareich Chocolate House
+            </h1>
+
+
+            <form
+                id="signupForm"
+                novalidate
+            >
+
+                <!-- FULL NAME -->
+
+                <label for="fullName">
+
+                    Full Name
+
+                    <input
+                        id="fullName"
+                        name="full_name"
+                        type="text"
+                        autocomplete="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </label>
+
+
+                <!-- EMAIL -->
+
+                <label for="signupEmail">
+
+                    Email
+
+                    <input
+                        id="signupEmail"
+                        name="email"
+                        type="email"
+                        autocomplete="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </label>
+
+
+                <!-- PASSWORD -->
+
+                <label for="signupPassword">
+
+                    Password
+
+                    <div class="password-wrapper">
+
+                        <input
+                            id="signupPassword"
+                            name="password"
+                            type="password"
+                            autocomplete="new-password"
+                            placeholder="Create a password"
+                            required
+                            minlength="6"
+                        >
+
+                        <button
+                            type="button"
+                            id="toggleSignupPassword"
+                            class="password-toggle"
+                            aria-label="Show password"
+                            title="Show password"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </label>
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <label for="confirmPassword">
+
+                    Confirm Password
+
+                    <div class="password-wrapper">
+
+                        <input
+                            id="confirmPassword"
+                            name="confirm_password"
+                            type="password"
+                            autocomplete="new-password"
+                            placeholder="Confirm your password"
+                            required
+                            minlength="6"
+                        >
+
+                        <button
+                            type="button"
+                            id="toggleConfirmPassword"
+                            class="password-toggle"
+                            aria-label="Show password"
+                            title="Show password"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </label>
+
+
+                <!-- CREATE ACCOUNT -->
+
+                <button
+                    class="primary"
+                    type="submit"
+                    id="createAccountButton"
+                >
+                    Create Account
+                </button>
+
+
+                <!-- BACK TO LOGIN -->
+
+                <div class="signup-text">
+
+                    <span>
+                        Already have an account?
+                    </span>
+
+                    <button
+                        type="button"
+                        id="backToLoginButton"
+                        class="signup-link"
+                    >
+                        Sign In
+                    </button>
+
+                </div>
+
+
+                <!-- SIGNUP ERROR -->
+
+                <div
+                    id="signupError"
+                    class="error"
+                    role="alert"
+                    aria-live="polite"
+                ></div>
+
+
+                <!-- SIGNUP SUCCESS -->
+
+                <div
+                    id="signupSuccess"
+                    class="success"
+                    role="status"
+                    aria-live="polite"
+                ></div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MAIN APPLICATION
+         ===================================================== -->
+
+    <div
+        id="appView"
+        class="app-shell hidden"
+    >
+
+        <!-- =================================================
+             SIDEBAR
+             ================================================= -->
+
+        <aside class="sidebar">
+
+            <div class="side-brand">
+
+                <span class="house-icon">
+                    🏠
+                </span>
+
+                <div>
+
+                    <strong>
+                        Dalareich
+                    </strong>
+
+                    <small>
+                        Chocolate House
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+
+            <nav>
+
+                <button
+                    data-page="dashboard"
+                    class="nav active"
+                    type="button"
+                >
+                    Dashboard
+                </button>
+
+
+                <button
+                    data-page="pos"
+                    class="nav"
+                    type="button"
+                >
+                    Point of Sale
+                </button>
+
+
+                <button
+                    data-page="products"
+                    class="nav"
+                    type="button"
+                >
+                    Inventory / Products
+                </button>
+
+
+                <button
+                    data-page="customers"
+                    class="nav"
+                    type="button"
+                >
+                    Customers
+                </button>
+
+
+                <button
+                    data-page="suppliers"
+                    class="nav"
+                    type="button"
+                >
+                    Suppliers
+                </button>
+
+
+                <button
+                    data-page="reports"
+                    class="nav"
+                    type="button"
+                >
+                    Reports
+                </button>
+
+            </nav>
+
+
+            <!-- SIDEBAR BOTTOM -->
+
+            <div class="side-bottom">
+
+                <div id="userBadge"></div>
+
+                <button
+                    id="logoutBtn"
+                    class="logout"
+                    type="button"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             MAIN
+             ================================================= -->
+
+        <main class="main">
+
+            <header>
+
+                <div>
+
+                    <span class="eyebrow">
+                        BOHOL SME MANAGEMENT
+                    </span>
+
+                    <h2 id="pageTitle">
+                        Dashboard
+                    </h2>
+
+                </div>
+
+
+                <div
+                    id="dbStatus"
+                    class="status"
+                >
+                    Checking...
+                </div>
+
+            </header>
+
+
+            <!-- DASHBOARD -->
+
+            <section
+                id="page-dashboard"
+                class="page"
+            ></section>
+
+
+            <!-- POS -->
+
+            <section
+                id="page-pos"
+                class="page hidden"
+            ></section>
+
+
+            <!-- PRODUCTS -->
+
+            <section
+                id="page-products"
+                class="page hidden"
+            ></section>
+
+
+            <!-- CUSTOMERS -->
+
+            <section
+                id="page-customers"
+                class="page hidden"
+            ></section>
+
+
+            <!-- SUPPLIERS -->
+
+            <section
+                id="page-suppliers"
+                class="page hidden"
+            ></section>
+
+
+            <!-- REPORTS -->
+
+            <section
+                id="page-reports"
+                class="page hidden"
+            ></section>
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+     SUPABASE JAVASCRIPT
+     ===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!-- =====================================================
+     SUPABASE CONFIGURATION
+     ===================================================== -->
+
+<script>
+
+    const SUPABASE_URL =
+        "https://pgdhsftmablzwwbixyfq.supabase.co";
+
+    const SUPABASE_ANON_KEY =
+        "sb_publishable_6-srP-164eUkETnmkauXEA_PxFdXkAa";
+
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_ANON_KEY
+        );
+
+</script>
+
+
+<!-- =====================================================
+     MAIN APPLICATION JAVASCRIPT
+     ===================================================== -->
+
+<script src="/js/app.js"></script>
+
+    <!-- =====================================================
+         ROLE AUTO-SELECTION
+         ONLY ADMIN AND USER
+         ===================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const emailInput =
+                    document.getElementById(
+                        "username"
+                    );
+
+                const roleSelect =
+                    document.getElementById(
+                        "loginRole"
+                    );
+
+                const ADMIN_EMAIL =
+                    "joshanerhea6252005@gmail.com";
+
+
+                if (
+                    !emailInput ||
+                    !roleSelect
+                ) {
+                    return;
+                }
+
+
+                function updateRole() {
+
+                    const email =
+                        String(
+                            emailInput.value || ""
+                        )
+                        .trim()
+                        .toLowerCase();
+
+
+                    /*
+                     * The administrator email
+                     * automatically uses Admin.
+                     */
+
+                    if (
+                        email ===
+                        ADMIN_EMAIL
+                    ) {
+
+                        roleSelect.value =
+                            "Admin";
+
+                    } else {
+
+                        /*
+                         * Every other account
+                         * defaults to User.
+                         */
+
+                        roleSelect.value =
+                            "User";
+                    }
+
+                }
+
+
+                /*
+                 * Update while typing.
+                 */
+
+                emailInput.addEventListener(
+                    "input",
+                    updateRole
+                );
+
+
+                /*
+                 * Update when leaving
+                 * the email field.
+                 */
+
+                emailInput.addEventListener(
+                    "change",
+                    updateRole
+                );
+
+
+                /*
+                 * Set the correct default
+                 * when the page opens.
+                 */
+
+                updateRole();
+
+            }
+
+        );
+
+    </script>
+
+</body>
+
+</html>

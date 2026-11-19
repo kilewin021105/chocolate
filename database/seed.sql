@@ -1,0 +1,4 @@
+-- This file documents the intended sample records.
+-- For safe password hashing, run:
+-- python database/seed.py
+-- after setting SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.

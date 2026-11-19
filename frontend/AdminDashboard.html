@@ -1,0 +1,4385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Dalareich Chocolate House - Admin Dashboard
+    </title>
+
+    <link rel="stylesheet" href="./css/adminStyle.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+
+</head>
+
+
+<body>
+
+<!-- =========================================================
+     ADMIN APPLICATION
+     ========================================================= -->
+
+<div
+    id="appView"
+    class="user-app admin-shell hidden"
+>
+
+    <!-- =====================================================
+         USER-STYLE ADMIN SIDEBAR
+         ===================================================== -->
+
+    <aside class="user-sidebar">
+
+        <!-- BRAND -->
+
+        <div class="user-brand">
+
+            <div class="brand-icon">
+
+                <svg
+                    viewBox="0 0 24 24"
+                    width="28"
+                    height="28"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                >
+
+                    <path
+                        d="M3 10.5L12 3L21 10.5"
+                        stroke="#E8D6C3"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+
+                    <path
+                        d="M5 9.5V21H19V9.5"
+                        stroke="#E8D6C3"
+                        stroke-width="2"
+                        stroke-linejoin="round"
+                    />
+
+                    <path
+                        d="M9 21V15H15V21"
+                        stroke="#E8D6C3"
+                        stroke-width="2"
+                        stroke-linejoin="round"
+                    />
+
+                </svg>
+
+            </div>
+
+            <div>
+
+                <strong>
+                    Dalareich
+                </strong>
+
+                <small>
+                    Chocolate House
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             ADMIN NAVIGATION
+             ================================================= -->
+
+        <nav class="nav-menu">
+
+            <button
+                class="nav active"
+                data-page="dashboard"
+                type="button"
+            >
+                📊 Dashboard
+            </button>
+
+
+            <button
+                class="nav"
+                data-page="pos"
+                type="button"
+            >
+                🛒 Point of Sale
+            </button>
+
+
+            <button
+                class="nav"
+                data-page="products"
+                type="button"
+            >
+                📦 Inventory
+            </button>
+
+
+            <button
+                class="nav"
+                data-page="customers"
+                type="button"
+            >
+                👥 Customers
+            </button>
+
+
+            <button
+                class="nav"
+                data-page="reports"
+                type="button"
+            >
+                📈 Reports
+            </button>
+
+        </nav>
+
+
+        <!-- =================================================
+             SIDEBAR BOTTOM
+             ================================================= -->
+
+        <div class="side-bottom">
+
+            
+
+
+           <button
+    class="user-nav-item logout-button"
+    type="button"
+    id="logoutButton">
+
+    <span class="logout-icon" aria-hidden="true">🚪</span>
+
+    <span>Logout</span>
+
+</button>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN ADMIN CONTENT
+         IMPORTANT: KEEP THIS
+         ===================================================== -->
+
+    <main class="main-content">
+
+        <!-- =================================================
+             HEADER
+             ================================================= -->
+
+        <header class="top-header">
+
+            <div>
+
+                <div class="eyebrow">
+                    DALAREICH CHOCOLATE HOUSE
+                </div>
+
+                <h2 id="pageTitle">
+                    Dashboard
+                </h2>
+
+            </div>
+
+
+            <div class="status">
+                Administrator
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             DASHBOARD
+             ================================================= -->
+
+        <section
+            id="page-dashboard"
+            class="page"
+        >
+
+            <div class="loading-message">
+                Loading dashboard...
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             POINT OF SALE
+             ================================================= -->
+
+        <section
+            id="page-pos"
+            class="page hidden"
+        >
+
+            <div class="pos-grid">
+
+                <!-- PRODUCTS -->
+
+                <div class="card">
+
+                    <div class="section-title">
+
+                        
+
+
+                    <div class="toolbar">
+
+                        <input
+                            id="posSearch"
+                            type="text"
+                            placeholder="Search product..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <div
+                        id="posProducts"
+                        class="product-grid"
+                    >
+
+                        <p class="muted">
+                            Loading products...
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CART -->
+
+                <div class="card">
+
+                    <h3>
+                        Current Sale
+                    </h3>
+
+
+                    <div
+                        id="cart"
+                        class="cart"
+                    >
+
+                        <p class="muted">
+                            Select products to begin.
+                        </p>
+
+                    </div>
+
+
+                    <div class="cart-total">
+
+                        Total:
+
+                        <span id="cartTotal">
+                            ₱0.00
+                        </span>
+
+                    </div>
+
+
+                    <label
+                        class="payment-label"
+                        for="payment"
+                    >
+                        Payment Method
+                    </label>
+
+
+                    <select
+                        id="payment"
+                        class="payment-select"
+                    >
+
+                        <option value="Cash">
+                            Cash
+                        </option>
+
+                        <option value="GCash">
+                            GCash
+                        </option>
+
+                        <option value="Card">
+                            Card
+                        </option>
+
+                    </select>
+
+
+                    <button
+                        id="checkout"
+                        class="primary checkout-button"
+                        type="button"
+                    >
+                        Confirm Payment
+                    </button>
+
+
+                    <div id="receipt"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PRODUCTS
+             ================================================= -->
+
+        <section
+            id="page-products"
+            class="page hidden"
+        >
+
+            <div class="toolbar">
+
+                <button
+                    class="primary"
+                    type="button"
+                    onclick="productForm()"
+                >
+                    + Add Product
+                </button>
+
+
+                <input
+                    id="productSearch"
+                    type="text"
+                    placeholder="Search products..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="table-wrap">
+
+                <table class="table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Code</th>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Batch</th>
+                            <th>Expiry</th>
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="productRows">
+
+                        <tr>
+
+                            <td
+                                colspan="8"
+                                class="empty-row"
+                            >
+                                Loading products...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CUSTOMERS
+             ================================================= -->
+
+        <section
+            id="page-customers"
+            class="page hidden"
+        >
+
+            <div class="toolbar">
+
+                <button
+                    class="primary"
+                    type="button"
+                    onclick="customerForm()"
+                >
+                    + Add Customer
+                </button>
+
+
+                <input
+                    id="customerSearch"
+                    type="text"
+                    placeholder="Search customers..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="table-wrap">
+
+                <table class="table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="customerRows">
+
+                        <tr>
+
+                            <td
+                                colspan="5"
+                                class="empty-row"
+                            >
+                                Loading customers...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             REPORTS
+             ================================================= -->
+
+        <section
+            id="page-reports"
+            class="page hidden"
+        >
+
+            <div class="loading-message">
+                Loading reports...
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+        <!-- =================================================
+             DASHBOARD
+             ================================================= -->
+
+        <section
+            id="page-dashboard"
+            class="page"
+        >
+
+            <div class="loading-message">
+                Loading dashboard...
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             POINT OF SALE
+             ================================================= -->
+
+        <section
+            id="page-pos"
+            class="page hidden"
+        >
+
+
+            <div class="pos-grid">
+
+
+                <!-- PRODUCTS -->
+
+                <div class="card">
+
+                    <div class="section-title">
+
+                        
+
+
+                    <div class="toolbar">
+
+                        <input
+                            id="posSearch"
+                            type="text"
+                            placeholder="Search product..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <div
+                        id="posProducts"
+                        class="product-grid"
+                    >
+
+                        <p class="muted">
+                            Loading products...
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- CART -->
+
+                <div class="card">
+
+                    <h3>
+                        Current Sale
+                    </h3>
+
+
+                    <div
+                        id="cart"
+                        class="cart"
+                    >
+
+                        <p class="muted">
+                            Select products to begin.
+                        </p>
+
+                    </div>
+
+
+                    <div class="cart-total">
+
+                        Total:
+
+                        <span id="cartTotal">
+                            ₱0.00
+                        </span>
+
+                    </div>
+
+
+                    <label
+                        class="payment-label"
+                        for="payment"
+                    >
+                        Payment Method
+                    </label>
+
+
+                    <select
+                        id="payment"
+                        class="payment-select"
+                    >
+
+                        <option value="Cash">
+                            Cash
+                        </option>
+
+                        <option value="GCash">
+                            GCash
+                        </option>
+
+                        <option value="Card">
+                            Card
+                        </option>
+
+                    </select>
+
+
+                    <button
+                        id="checkout"
+                        class="primary checkout-button"
+                        type="button"
+                    >
+                        Confirm Payment
+                    </button>
+
+
+                    <div id="receipt"></div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             PRODUCTS
+             ================================================= -->
+
+        <section
+            id="page-products"
+            class="page hidden"
+        >
+
+
+            <div class="toolbar">
+
+
+                <button
+                    class="primary"
+                    type="button"
+                    onclick="productForm()"
+                >
+                    + Add Product
+                </button>
+
+
+                <input
+                    id="productSearch"
+                    type="text"
+                    placeholder="Search products..."
+                    autocomplete="off"
+                >
+
+
+            </div>
+
+
+
+            <div class="table-wrap">
+
+
+                <table class="table">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Code
+                            </th>
+
+                            <th>
+                                Product
+                            </th>
+
+                            <th>
+                                Category
+                            </th>
+
+                            <th>
+                                Price
+                            </th>
+
+                            <th>
+                                Stock
+                            </th>
+
+                            <th>
+                                Batch
+                            </th>
+
+                            <th>
+                                Expiry
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="productRows">
+
+                        <tr>
+
+                            <td
+                                colspan="8"
+                                class="empty-row"
+                            >
+                                Loading products...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             CUSTOMERS
+             ================================================= -->
+
+        <section
+            id="page-customers"
+            class="page hidden"
+        >
+
+
+            <div class="toolbar">
+
+
+                <button
+                    class="primary"
+                    type="button"
+                    onclick="customerForm()"
+                >
+                    + Add Customer
+                </button>
+
+
+                <input
+                    id="customerSearch"
+                    type="text"
+                    placeholder="Search customers..."
+                    autocomplete="off"
+                >
+
+
+            </div>
+
+
+
+            <div class="table-wrap">
+
+
+                <table class="table">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                ID
+                            </th>
+
+                            <th>
+                                Name
+                            </th>
+
+                            <th>
+                                Phone
+                            </th>
+
+                            <th>
+                                Email
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="customerRows">
+
+                        <tr>
+
+                            <td
+                                colspan="5"
+                                class="empty-row"
+                            >
+                                Loading customers...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+        </section>
+
+        <!-- =================================================
+             REPORTS
+             ================================================= -->
+
+        <section
+            id="page-reports"
+            class="page hidden"
+        >
+
+            <div class="loading-message">
+                Loading reports...
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     ACCESS DENIED
+     ========================================================= -->
+
+<div
+    id="accessDenied"
+    class="access-denied hidden"
+>
+
+
+    <div class="access-denied-card">
+
+
+        <div class="access-denied-icon">
+            🔒
+        </div>
+
+
+        <h1>
+            Access Denied
+        </h1>
+
+
+        <p>
+            You are not authorized to access
+            the administrator dashboard.
+        </p>
+
+
+        <p>
+            Only the authorized administrator
+            can access this page.
+        </p>
+
+
+        <button
+            id="returnLoginBtn"
+            class="primary"
+            type="button"
+        >
+            Return to Login
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     LOADING
+     ========================================================= -->
+
+<div
+    id="adminLoading"
+    class="admin-loading"
+>
+
+
+    <div class="admin-loading-card">
+
+
+        <div class="loading-spinner"></div>
+
+
+        <h3>
+            Checking administrator access...
+        </h3>
+
+
+        <p>
+            Please wait.
+        </p>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     YOUR EXISTING APPLICATION JAVASCRIPT
+     ========================================================= -->
+
+<script src="./js/app.js"></script>
+<script src="./js/adminProd.js"></script>
+<script src="./js/adminReports.js"></script>
+
+
+
+<!-- =========================================================
+     ADMIN ACCESS CONTROL
+     ========================================================= -->
+
+<script>
+
+"use strict";
+
+
+/* =========================================================
+   ADMIN POS CURRENT SALE
+   ADDED FOR POS
+   ========================================================= */
+
+let currentSale = [];
+
+
+/* =========================================================
+   ONLY THIS EMAIL IS ADMIN
+   ========================================================= */
+
+const ADMIN_EMAIL =
+    "joshanerhea6252005@gmail.com";
+
+
+/* =========================================================
+   NORMALIZE EMAIL
+   ========================================================= */
+
+function normalizeAdminEmail(email) {
+
+    return String(email || "")
+        .trim()
+        .toLowerCase();
+
+}
+
+
+/* =========================================================
+   RETURN TO LOGIN
+   ========================================================= */
+
+function returnToLogin() {
+
+    /*
+     * Clear the local login session.
+     */
+
+    try {
+
+        localStorage.removeItem(
+            "dalareichUser"
+        );
+
+    } catch (error) {
+
+        console.warn(
+            "Could not clear localStorage:",
+            error
+        );
+
+    }
+
+
+    /*
+     * Return to login page.
+     */
+
+    window.location.href =
+        "./index.html";
+
+}
+
+
+/* =========================================================
+   SHOW LOADING
+   ========================================================= */
+
+function showAdminLoading() {
+
+    const loading =
+        document.getElementById(
+            "adminLoading"
+        );
+
+    if (loading) {
+
+        loading.classList.remove(
+            "hidden"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   HIDE LOADING
+   ========================================================= */
+
+function hideAdminLoading() {
+
+    const loading =
+        document.getElementById(
+            "adminLoading"
+        );
+
+    if (loading) {
+
+        loading.classList.add(
+            "hidden"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   SHOW ADMIN DASHBOARD
+   ========================================================= */
+
+function showAdminDashboard() {
+
+    const appView =
+        document.getElementById(
+            "appView"
+        );
+
+    const accessDenied =
+        document.getElementById(
+            "accessDenied"
+        );
+
+
+    if (accessDenied) {
+
+        accessDenied.classList.add(
+            "hidden"
+        );
+
+    }
+
+
+    if (appView) {
+
+        appView.classList.remove(
+            "hidden"
+        );
+
+    }
+
+
+    hideAdminLoading();
+
+}
+
+
+/* =========================================================
+   SHOW ACCESS DENIED
+   ========================================================= */
+
+function showAdminAccessDenied() {
+
+    const appView =
+        document.getElementById(
+            "appView"
+        );
+
+    const accessDenied =
+        document.getElementById(
+            "accessDenied"
+        );
+
+
+    if (appView) {
+
+        appView.classList.add(
+            "hidden"
+        );
+
+    }
+
+
+    if (accessDenied) {
+
+        accessDenied.classList.remove(
+            "hidden"
+        );
+
+    }
+
+
+    hideAdminLoading();
+
+}
+
+
+/* =========================================================
+   CHECK BACKEND SESSION
+   ========================================================= */
+
+async function getBackendUser() {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/auth/me",
+                {
+                    method: "GET",
+
+                    credentials: "include",
+
+                    headers: {
+                        "Accept":
+                            "application/json"
+                    }
+                }
+            );
+
+
+        /*
+         * Endpoint does not exist.
+         */
+
+        if (
+            response.status === 404
+        ) {
+
+            return null;
+
+        }
+
+
+        /*
+         * Not authenticated.
+         */
+
+        if (
+            !response.ok
+        ) {
+
+            return false;
+
+        }
+
+
+        const data =
+            await response.json()
+                .catch(
+                    () => null
+                );
+
+
+        if (
+            !data
+        ) {
+
+            return false;
+
+        }
+
+
+        /*
+         * Support:
+         *
+         * { user: {...} }
+         *
+         * OR
+         *
+         * {...}
+         */
+
+        const user =
+            data.user ||
+            data;
+
+
+        if (
+            !user
+        ) {
+
+            return false;
+
+        }
+
+
+        return user;
+
+    }
+
+    catch (error) {
+
+        console.warn(
+            "Backend session check failed:",
+            error
+        );
+
+        /*
+         * null means:
+         *
+         * Backend session endpoint
+         * is unavailable.
+         */
+
+        return null;
+
+    }
+
+}
+
+
+/* =========================================================
+   CHECK LOCAL STORAGE SESSION
+   ========================================================= */
+
+function getLocalUser() {
+
+    try {
+
+        const storedUser =
+            localStorage.getItem(
+                "dalareichUser"
+            );
+
+
+        if (
+            !storedUser
+        ) {
+
+            return null;
+
+        }
+
+
+        const user =
+            JSON.parse(
+                storedUser
+            );
+
+
+        return user || null;
+
+    }
+
+    catch (error) {
+
+        console.warn(
+            "Invalid local login session:",
+            error
+        );
+
+        return null;
+
+    }
+
+}
+
+
+/* =========================================================
+   MAIN ADMIN CHECK
+   ========================================================= */
+
+async function checkAdminAccess() {
+
+    showAdminLoading();
+
+
+    console.log(
+        "================================="
+    );
+
+    console.log(
+        "ADMIN ACCESS CHECK"
+    );
+
+    console.log(
+        "Authorized email:",
+        ADMIN_EMAIL
+    );
+
+
+    /* =====================================================
+       1. CHECK BACKEND
+       ===================================================== */
+
+    const backendUser =
+        await getBackendUser();
+
+
+    if (
+        backendUser &&
+        backendUser !== true
+    ) {
+
+        const backendEmail =
+            normalizeAdminEmail(
+                backendUser.email ||
+                backendUser.username
+            );
+
+
+        console.log(
+            "Backend email:",
+            backendEmail
+        );
+
+
+        /*
+         * Backend user exists.
+         *
+         * ONLY the authorized email
+         * may continue.
+         */
+
+        if (
+            backendEmail ===
+            normalizeAdminEmail(
+                ADMIN_EMAIL
+            )
+        ) {
+
+            console.log(
+                "ADMIN ACCESS GRANTED FROM BACKEND"
+            );
+
+
+            /*
+             * Save normalized session.
+             */
+
+            try {
+
+                backendUser.email =
+                    backendEmail;
+
+                backendUser.role =
+                    "Admin";
+
+
+                localStorage.setItem(
+                    "dalareichUser",
+                    JSON.stringify(
+                        backendUser
+                    )
+                );
+
+            }
+
+            catch (error) {
+
+                console.warn(
+                    "Could not save admin session:",
+                    error
+                );
+
+            }
+
+
+            showAdminDashboard();
+
+
+            /*
+             * Initialize dashboard.
+             */
+
+            initializeAdminDashboard();
+
+
+            return true;
+
+        }
+
+
+        /*
+         * Backend authenticated,
+         * but wrong email.
+         */
+
+        console.warn(
+            "ACCESS DENIED. Backend email:",
+            backendEmail
+        );
+
+
+        showAdminAccessDenied();
+
+        return false;
+
+    }
+
+
+    /* =====================================================
+       2. BACKEND SESSION UNAVAILABLE
+       ===================================================== */
+
+    if (
+        backendUser === null
+    ) {
+
+        console.warn(
+            "/api/auth/me is unavailable."
+        );
+
+        console.warn(
+            "Using localStorage session as fallback."
+        );
+
+    }
+
+
+    /* =====================================================
+       3. CHECK LOCAL STORAGE
+       ===================================================== */
+
+    const localUser =
+        getLocalUser();
+
+
+    if (
+        !localUser
+    ) {
+
+        console.warn(
+            "No logged-in user found."
+        );
+
+
+        showAdminAccessDenied();
+
+        return false;
+
+    }
+
+
+    const localEmail =
+        normalizeAdminEmail(
+            localUser.email ||
+            localUser.username
+        );
+
+
+    console.log(
+        "Local storage email:",
+        localEmail
+    );
+
+
+    /* =====================================================
+       4. ONLY ADMIN EMAIL
+       ===================================================== */
+
+    if (
+        localEmail !==
+        normalizeAdminEmail(
+            ADMIN_EMAIL
+        )
+    ) {
+
+        console.warn(
+            "LOCAL ACCESS DENIED."
+        );
+
+
+        showAdminAccessDenied();
+
+        return false;
+
+    }
+
+
+    /* =====================================================
+       5. ADMIN ALLOWED
+       ===================================================== */
+
+    console.log(
+        "ADMIN ACCESS GRANTED FROM LOCAL SESSION"
+    );
+
+
+    localUser.email =
+        localEmail;
+
+    localUser.role =
+        "Admin";
+
+
+    try {
+
+        localStorage.setItem(
+            "dalareichUser",
+            JSON.stringify(
+                localUser
+            )
+        );
+
+    }
+
+    catch (error) {
+
+        console.warn(
+            "Could not save local admin session:",
+            error
+        );
+
+    }
+
+
+    showAdminDashboard();
+
+
+    initializeAdminDashboard();
+
+
+    return true;
+
+}
+
+
+/* =========================================================
+   INITIALIZE ADMIN DASHBOARD
+   ========================================================= */
+
+function initializeAdminDashboard() {
+
+    /* =====================================================
+       POS MUST ALWAYS START EMPTY
+       ADDED FOR POS
+       ===================================================== */
+
+    currentSale = [];
+
+
+    console.log(
+        "Initializing admin dashboard..."
+    );
+
+
+    /*
+     * Set administrator badge.
+     */
+
+    const userBadge =
+        document.getElementById(
+            "userBadge"
+        );
+
+
+    if (userBadge) {
+
+        userBadge.innerHTML =
+            `
+            <strong>
+                Administrator
+            </strong>
+
+            <br>
+
+            <small>
+                ${ADMIN_EMAIL}
+            </small>
+            `;
+
+    }
+
+
+    /*
+     * Navigation.
+     */
+
+    document
+        .querySelectorAll(
+            ".nav"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    async function () {
+
+                        const page =
+                            this.dataset.page;
+
+
+                        if (
+                            typeof showPage ===
+                            "function"
+                        ) {
+
+                            showPage(
+                                page
+                            );
+
+                        }
+
+
+                        /*
+                         * Load appropriate data.
+                         */
+
+                        try {
+
+                            if (
+                                page ===
+                                "dashboard" &&
+                                typeof renderDashboard ===
+                                "function"
+                            ) {
+
+                                await renderDashboard();
+
+                            }
+
+
+                            else if (
+                                page ===
+                                "pos" &&
+                                typeof loadAll ===
+                                "function"
+                            ) {
+
+                                /* =================================
+                                   POS ALWAYS STARTS EMPTY
+                                   ADDED FOR POS
+                                   ================================= */
+
+                                currentSale = [];
+
+
+                                await loadAll();
+
+
+                                /* =================================
+                                   KEEP CURRENT SALE EMPTY
+                                   AFTER DATA LOADING
+                                   ADDED FOR POS
+                                   ================================= */
+
+                                currentSale = [];
+
+
+                                if (
+                                    typeof renderCurrentSale ===
+                                    "function"
+                                ) {
+
+                                    renderCurrentSale();
+
+                                }
+
+                            }
+
+
+                            else if (
+                                page ===
+                                "products" &&
+                                typeof renderProducts ===
+                                "function"
+                            ) {
+
+                                await renderProducts();
+
+                            }
+
+
+                            else if (
+                                page ===
+                                "customers" &&
+                                typeof renderCustomers ===
+                                "function"
+                            ) {
+
+                                await renderCustomers();
+
+                            }
+
+
+                            else if (
+                                page ===
+                                "reports" &&
+                                typeof renderReports ===
+                                "function"
+                            ) {
+
+                                await renderReports();
+
+                            }
+
+                        }
+
+                        catch (error) {
+
+                            console.error(
+                                "Page loading error:",
+                                error
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+    /* =========================================================
+   LOGOUT
+   ========================================================= */
+
+const logoutButton =
+    document.getElementById("logoutButton");
+
+if (logoutButton) {
+
+    /*
+     * Prevent duplicate listeners.
+     */
+    if (!logoutButton.dataset.adminBound) {
+
+        logoutButton.dataset.adminBound = "true";
+
+        logoutButton.addEventListener(
+            "click",
+            async function () {
+
+                /*
+                 * Prevent multiple clicks.
+                 */
+                logoutButton.disabled = true;
+
+                try {
+
+                    /*
+                     * Try backend logout.
+                     */
+                    await fetch(
+                        "/api/auth/logout",
+                        {
+                            method: "POST",
+
+                            credentials: "include",
+
+                            headers: {
+                                "Accept":
+                                    "application/json"
+                            }
+                        }
+                    );
+
+                }
+
+                catch (error) {
+
+                    console.warn(
+                        "Backend logout unavailable:",
+                        error
+                    );
+
+                }
+
+                /*
+                 * Remove local login session.
+                 */
+                try {
+
+                    localStorage.removeItem(
+                        "dalareichUser"
+                    );
+
+                    localStorage.removeItem(
+                        "dalareichCurrentUser"
+                    );
+
+                }
+
+                catch (error) {
+
+                    console.warn(
+                        "Could not remove local session:",
+                        error
+                    );
+
+                }
+
+                /*
+                 * Return to login page.
+                 */
+                window.location.href =
+                    "./index.html";
+
+            }
+        );
+
+    }
+
+};
+}
+
+
+/* =========================================================
+   RETURN BUTTON
+   ========================================================= */
+
+document
+    .getElementById(
+        "returnLoginBtn"
+    )
+    ?.addEventListener(
+        "click",
+        returnToLogin
+    );
+
+
+/* =========================================================
+   START ADMIN PROTECTION
+   ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        /*
+         * IMPORTANT:
+         *
+         * app.js also has a DOMContentLoaded
+         * handler that calls showLoginView().
+         *
+         * Therefore this code runs after that
+         * handler and explicitly SHOWS the admin
+         * dashboard if authorized.
+         */
+
+        setTimeout(
+            function () {
+
+                checkAdminAccess()
+                    .catch(
+                        function (error) {
+
+                            console.error(
+                                "Admin access check failed:",
+                                error
+                            );
+
+                            showAdminAccessDenied();
+
+                        }
+                    );
+
+            },
+            50
+        );
+
+    }
+);
+
+
+/* =========================================================
+   ADD PRODUCT
+   ========================================================= */
+
+async function productForm() {
+
+    const formHtml = `
+        <div
+            id="productModal"
+            style="
+                position:fixed;
+                inset:0;
+                background:rgba(0,0,0,0.45);
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                z-index:9999;
+                padding:20px;
+            "
+        >
+
+            <div
+                style="
+                    width:100%;
+                    max-width:550px;
+                    max-height:90vh;
+                    overflow:auto;
+                    background:#fffdf9;
+                    border-radius:16px;
+                    padding:25px;
+                    box-shadow:0 20px 50px rgba(0,0,0,0.2);
+                "
+            >
+
+                <div
+                    style="
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:center;
+                        margin-bottom:20px;
+                    "
+                >
+
+                    <div>
+                        <h2
+                            style="
+                                margin:0;
+                                font-family:Georgia,serif;
+                            "
+                        >
+                            Add Product
+                        </h2>
+
+                        <p
+                            style="
+                                margin:5px 0 0;
+                                color:#83776c;
+                                font-size:13px;
+                            "
+                        >
+                            Add a real product to your inventory.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        id="closeProductModal"
+                        style="
+                            border:0;
+                            background:#eee4d8;
+                            border-radius:50%;
+                            width:36px;
+                            height:36px;
+                            cursor:pointer;
+                            font-size:18px;
+                        "
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <form id="productFormElement">
+
+                    <label
+                        style="
+                            display:block;
+                            margin-bottom:15px;
+                            font-weight:700;
+                            font-size:13px;
+                        "
+                    >
+                        Product Code
+
+                        <input
+                            id="productCode"
+                            type="text"
+                            required
+                            placeholder="e.g. DAL-CHO-001"
+                            style="
+                                display:block;
+                                width:100%;
+                                box-sizing:border-box;
+                                margin-top:7px;
+                                padding:12px;
+                                border:1px solid #ddd2c5;
+                                border-radius:10px;
+                            "
+                        >
+                    </label>
+
+
+                    <label
+                        style="
+                            display:block;
+                            margin-bottom:15px;
+                            font-weight:700;
+                            font-size:13px;
+                        "
+                    >
+                        Product Name
+
+                        <input
+                            id="productName"
+                            type="text"
+                            required
+                            placeholder="e.g. Dark Chocolate 100g"
+                            style="
+                                display:block;
+                                width:100%;
+                                box-sizing:border-box;
+                                margin-top:7px;
+                                padding:12px;
+                                border:1px solid #ddd2c5;
+                                border-radius:10px;
+                            "
+                        >
+                    </label>
+
+
+                    <label
+                        style="
+                            display:block;
+                            margin-bottom:15px;
+                            font-weight:700;
+                            font-size:13px;
+                        "
+                    >
+                        Category
+
+                        <select
+                            id="productCategory"
+                            required
+                            style="
+                                display:block;
+                                width:100%;
+                                box-sizing:border-box;
+                                margin-top:7px;
+                                padding:12px;
+                                border:1px solid #ddd2c5;
+                                border-radius:10px;
+                            "
+                        >
+
+                            <option value="">
+                                Select category
+                            </option>
+
+                            <option value="Chocolate">
+                                Chocolate
+                            </option>
+
+                            <option value="Tablea">
+                                Tablea
+                            </option>
+
+                            <option value="Cacao">
+                                Cacao
+                            </option>
+
+                            <option value="Gift Set">
+                                Gift Set
+                            </option>
+
+                            <option value="Snack">
+                                Snack
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <div
+                        style="
+                            display:grid;
+                            grid-template-columns:1fr 1fr;
+                            gap:12px;
+                        "
+                    >
+
+                        <label
+                            style="
+                                display:block;
+                                margin-bottom:15px;
+                                font-weight:700;
+                                font-size:13px;
+                            "
+                        >
+                            Price
+
+                            <input
+                                id="productPrice"
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                required
+                                placeholder="0.00"
+                                style="
+                                    display:block;
+                                    width:100%;
+                                    box-sizing:border-box;
+                                    margin-top:7px;
+                                    padding:12px;
+                                    border:1px solid #ddd2c5;
+                                    border-radius:10px;
+                                "
+                            >
+                        </label>
+
+
+                        <label
+                            style="
+                                display:block;
+                                margin-bottom:15px;
+                                font-weight:700;
+                                font-size:13px;
+                            "
+                        >
+                            Stock Quantity
+
+                            <input
+                                id="productStock"
+                                type="number"
+                                min="0"
+                                step="1"
+                                required
+                                placeholder="0"
+                                style="
+                                    display:block;
+                                    width:100%;
+                                    box-sizing:border-box;
+                                    margin-top:7px;
+                                    padding:12px;
+                                    border:1px solid #ddd2c5;
+                                    border-radius:10px;
+                                "
+                            >
+                        </label>
+
+                    </div>
+
+
+                    <div
+                        style="
+                            display:grid;
+                            grid-template-columns:1fr 1fr;
+                            gap:12px;
+                        "
+                    >
+
+                        <label
+                            style="
+                                display:block;
+                                margin-bottom:15px;
+                                font-weight:700;
+                                font-size:13px;
+                            "
+                        >
+                            Reorder Level
+
+                            <input
+                                id="productReorder"
+                                type="number"
+                                min="0"
+                                step="1"
+                                value="5"
+                                required
+                                style="
+                                    display:block;
+                                    width:100%;
+                                    box-sizing:border-box;
+                                    margin-top:7px;
+                                    padding:12px;
+                                    border:1px solid #ddd2c5;
+                                    border-radius:10px;
+                                "
+                            >
+                        </label>
+
+
+                        <label
+                            style="
+                                display:block;
+                                margin-bottom:15px;
+                                font-weight:700;
+                                font-size:13px;
+                            "
+                        >
+                            Unit
+
+                            <input
+                                id="productUnit"
+                                type="text"
+                                value="unit"
+                                required
+                                placeholder="pack, bar, box..."
+                                style="
+                                    display:block;
+                                    width:100%;
+                                    box-sizing:border-box;
+                                    margin-top:7px;
+                                    padding:12px;
+                                    border:1px solid #ddd2c5;
+                                    border-radius:10px;
+                                "
+                            >
+                        </label>
+
+                    </div>
+
+
+                    <label
+                        style="
+                            display:block;
+                            margin-bottom:15px;
+                            font-weight:700;
+                            font-size:13px;
+                        "
+                    >
+                        Batch Number
+
+                        <input
+                            id="productBatch"
+                            type="text"
+                            placeholder="Optional"
+                            style="
+                                display:block;
+                                width:100%;
+                                box-sizing:border-box;
+                                margin-top:7px;
+                                padding:12px;
+                                border:1px solid #ddd2c5;
+                                border-radius:10px;
+                            "
+                        >
+                    </label>
+
+
+                    <label
+                        style="
+                            display:block;
+                            margin-bottom:20px;
+                            font-weight:700;
+                            font-size:13px;
+                        "
+                    >
+                        Expiration Date
+
+                        <input
+                            id="productExpiration"
+                            type="date"
+                            style="
+                                display:block;
+                                width:100%;
+                                box-sizing:border-box;
+                                margin-top:7px;
+                                padding:12px;
+                                border:1px solid #ddd2c5;
+                                border-radius:10px;
+                            "
+                        >
+                    </label>
+
+
+                    <div
+                        id="productFormError"
+                        style="
+                            color:#a33a2b;
+                            font-size:13px;
+                            margin-bottom:12px;
+                        "
+                    ></div>
+
+
+                    <button
+                        type="submit"
+                        class="primary"
+                        id="saveProductButton"
+                        style="
+                            width:100%;
+                            cursor:pointer;
+                        "
+                    >
+                        Save Product
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+    `;
+
+
+    document.body.insertAdjacentHTML(
+        "beforeend",
+        formHtml
+    );
+
+
+    /* ---------------------------------------------
+       CLOSE
+       --------------------------------------------- */
+
+    document
+        .getElementById("closeProductModal")
+        ?.addEventListener(
+            "click",
+            () => {
+
+                document
+                    .getElementById("productModal")
+                    ?.remove();
+
+            }
+        );
+
+
+    /* ---------------------------------------------
+       SAVE
+       --------------------------------------------- */
+
+    document
+        .getElementById("productFormElement")
+        ?.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                const errorBox =
+                    document.getElementById(
+                        "productFormError"
+                    );
+
+                const saveButton =
+                    document.getElementById(
+                        "saveProductButton"
+                    );
+
+
+                errorBox.textContent = "";
+
+
+                const product = {
+
+                    product_code:
+                        document
+                            .getElementById(
+                                "productCode"
+                            )
+                            .value
+                            .trim(),
+
+                    product_name:
+                        document
+                            .getElementById(
+                                "productName"
+                            )
+                            .value
+                            .trim(),
+
+                    category:
+                        document
+                            .getElementById(
+                                "productCategory"
+                            )
+                            .value,
+
+                    price:
+                        Number(
+                            document
+                                .getElementById(
+                                    "productPrice"
+                                )
+                                .value
+                        ),
+
+                    stock_quantity:
+                        Number(
+                            document
+                                .getElementById(
+                                    "productStock"
+                                )
+                                .value
+                        ),
+
+                    reorder_level:
+                        Number(
+                            document
+                                .getElementById(
+                                    "productReorder"
+                                )
+                                .value
+                        ),
+
+                    unit:
+                        document
+                            .getElementById(
+                                "productUnit"
+                            )
+                            .value
+                            .trim(),
+
+                    batch_number:
+                        document
+                            .getElementById(
+                                "productBatch"
+                            )
+                            .value
+                            .trim() || null,
+
+                    expiration_date:
+                        document
+                            .getElementById(
+                                "productExpiration"
+                            )
+                            .value || null
+                };
+
+
+                /* -----------------------------------------
+                   VALIDATION
+                   ----------------------------------------- */
+
+                if (!product.product_code) {
+
+                    errorBox.textContent =
+                        "Product code is required.";
+
+                    return;
+                }
+
+
+                if (!product.product_name) {
+
+                    errorBox.textContent =
+                        "Product name is required.";
+
+                    return;
+                }
+
+
+                if (!product.category) {
+
+                    errorBox.textContent =
+                        "Please select a category.";
+
+                    return;
+                }
+
+
+                if (
+                    !Number.isFinite(product.price) ||
+                    product.price < 0
+                ) {
+
+                    errorBox.textContent =
+                        "Please enter a valid price.";
+
+                    return;
+                }
+
+
+                if (
+                    !Number.isInteger(
+                        product.stock_quantity
+                    ) ||
+                    product.stock_quantity < 0
+                ) {
+
+                    errorBox.textContent =
+                        "Please enter a valid stock quantity.";
+
+                    return;
+                }
+
+
+                if (
+                    !Number.isInteger(
+                        product.reorder_level
+                    ) ||
+                    product.reorder_level < 0
+                ) {
+
+                    errorBox.textContent =
+                        "Please enter a valid reorder level.";
+
+                    return;
+                }
+
+
+                /* -----------------------------------------
+                   SAVE
+                   ----------------------------------------- */
+
+                saveButton.disabled = true;
+
+                saveButton.textContent =
+                    "Saving...";
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "/api/products",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json",
+
+                                    "Accept":
+                                        "application/json"
+                                },
+
+                                credentials:
+                                    "include",
+
+                                body:
+                                    JSON.stringify(
+                                        product
+                                    )
+                            }
+                        );
+
+
+                    let result = {};
+
+                    try {
+
+                        result =
+                            await response.json();
+
+                    } catch (_) {
+
+                        result = {};
+
+                    }
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            result.error ||
+                            result.message ||
+                            "Unable to save product."
+                        );
+
+                    }
+
+
+                    /* -------------------------------------
+                       SUCCESS
+                       ------------------------------------- */
+
+                    document
+                        .getElementById(
+                            "productModal"
+                        )
+                        ?.remove();
+
+
+                    showToast(
+                        "Product added successfully.",
+                        "success"
+                    );
+
+
+                    /* Reload database data */
+
+                    await loadAll();
+
+
+                    /* Open products page */
+
+                    showPage(
+                        "products"
+                    );
+
+
+                } catch (error) {
+
+                    console.error(
+                        "ADD PRODUCT ERROR:",
+                        error
+                    );
+
+
+                    errorBox.textContent =
+                        error.message ||
+                        "Unable to save product.";
+
+                    saveButton.disabled =
+                        false;
+
+                    saveButton.textContent =
+                        "Save Product";
+
+                }
+
+            }
+        );
+}
+
+/* =========================================================
+   ONLINE CUSTOMER ORDERS
+   ADDED FOR ONLINE ORDER MANAGEMENT
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   LOAD ONLINE ORDERS FROM DATABASE
+   --------------------------------------------------------- */
+async function loadOnlineOrders() {
+
+    const container =
+        document.getElementById("onlineOrdersContainer");
+
+    if (!container) {
+        console.error(
+            "onlineOrdersContainer was not found."
+        );
+        return;
+    }
+
+    container.innerHTML = `
+        <div style="
+            padding:30px;
+            text-align:center;
+            color:#83776c;
+        ">
+            Loading customer orders...
+        </div>
+    `;
+
+    try {
+
+        const response = await fetch(
+            "/api/orders",
+            {
+                method: "GET",
+                credentials: "include",
+                headers: {
+                    "Accept": "application/json"
+                }
+            }
+        );
+
+        let result = {};
+
+        try {
+            result = await response.json();
+        }
+        catch (error) {
+            result = {};
+        }
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.error ||
+                result.message ||
+                "Unable to load customer orders."
+            );
+        }
+
+        const orders =
+            Array.isArray(result)
+                ? result
+                : (
+                    result.orders ||
+                    result.data ||
+                    []
+                );
+
+        renderOnlineOrders(orders);
+
+    }
+    catch (error) {
+
+        console.error(
+            "LOAD ONLINE ORDERS ERROR:",
+            error
+        );
+
+        container.innerHTML = `
+            <div style="
+                padding:30px;
+                text-align:center;
+                color:#a33a2b;
+            ">
+                <strong>
+                    Unable to load customer orders.
+                </strong>
+
+                <br><br>
+
+                ${escapeAdminHtml(error.message)}
+
+                <br><br>
+
+                <button
+                    type="button"
+                    id="retryOnlineOrders"
+                    style="
+                        border:0;
+                        background:#75401f;
+                        color:white;
+                        padding:10px 18px;
+                        border-radius:8px;
+                        cursor:pointer;
+                    "
+                >
+                    Try Again
+                </button>
+            </div>
+        `;
+
+        document
+            .getElementById("retryOnlineOrders")
+            ?.addEventListener(
+                "click",
+                loadOnlineOrders
+            );
+    }
+}
+
+
+/* ---------------------------------------------------------
+   RENDER ONLINE ORDERS
+   --------------------------------------------------------- */
+function renderOnlineOrders(orders) {
+
+    const container =
+        document.getElementById(
+            "onlineOrdersContainer"
+        );
+
+    if (!container) {
+        return;
+    }
+
+    if (!Array.isArray(orders) || orders.length === 0) {
+
+        container.innerHTML = `
+            <div style="
+                background:#fffdf9;
+                border:1px solid #eadbca;
+                border-radius:16px;
+                padding:50px 25px;
+                text-align:center;
+                color:#83776c;
+            ">
+
+                <div style="
+                    font-size:40px;
+                    margin-bottom:12px;
+                ">
+                    🛍️
+                </div>
+
+                <h3 style="
+                    margin:0 0 8px;
+                    color:#3b2418;
+                ">
+                    No Online Orders
+                </h3>
+
+                <p style="
+                    margin:0;
+                ">
+                    Customer orders will appear here
+                    when they place an order online.
+                </p>
+
+            </div>
+        `;
+
+        return;
+    }
+
+    /* -----------------------------------------------------
+       NEWEST ORDERS FIRST
+       ----------------------------------------------------- */
+
+    orders.sort(
+        function (a, b) {
+
+            const dateA =
+                new Date(
+                    a.date ||
+                    a.created_at ||
+                    0
+                ).getTime();
+
+            const dateB =
+                new Date(
+                    b.date ||
+                    b.created_at ||
+                    0
+                ).getTime();
+
+            return dateB - dateA;
+        }
+    );
+
+
+    container.innerHTML = orders
+        .map(
+            function (order) {
+
+                const status =
+                    String(
+                        order.status ||
+                        "Pending"
+                    );
+
+                const items =
+                    Array.isArray(order.items)
+                        ? order.items
+                        : [];
+
+                const itemCount =
+                    items.reduce(
+                        function (total, item) {
+                            return total +
+                                Number(
+                                    item.quantity || 0
+                                );
+                        },
+                        0
+                    );
+
+                const total =
+                    Number(
+                        order.total || 0
+                    );
+
+                const statusStyle =
+                    getAdminOrderStatusStyle(
+                        status
+                    );
+
+                const orderId =
+                    String(
+                        order.id || ""
+                    );
+
+                return `
+                    <div
+                        class="admin-online-order"
+                        style="
+                            background:#fffdf9;
+                            border:1px solid #eadbca;
+                            border-radius:16px;
+                            padding:22px;
+                            margin-bottom:16px;
+                            box-shadow:0 5px 18px rgba(59,36,24,0.06);
+                        "
+                    >
+
+                        <div style="
+                            display:flex;
+                            justify-content:space-between;
+                            align-items:flex-start;
+                            gap:20px;
+                            margin-bottom:16px;
+                        ">
+
+                            <div>
+
+                                <div style="
+                                    font-size:11px;
+                                    font-weight:800;
+                                    letter-spacing:1.5px;
+                                    color:#a06a42;
+                                    margin-bottom:5px;
+                                ">
+                                    ONLINE ORDER
+                                </div>
+
+                                <div style="
+                                    font-size:18px;
+                                    font-weight:800;
+                                    color:#3b2418;
+                                ">
+                                    ${escapeAdminHtml(orderId)}
+                                </div>
+
+                                <div style="
+                                    margin-top:5px;
+                                    font-size:13px;
+                                    color:#83776c;
+                                ">
+                                    ${formatAdminOrderDate(
+                                        order.date ||
+                                        order.created_at
+                                    )}
+                                </div>
+
+                            </div>
+
+
+                            <span style="
+                                display:inline-block;
+                                padding:7px 13px;
+                                border-radius:20px;
+                                background:${statusStyle.background};
+                                color:${statusStyle.color};
+                                font-size:11px;
+                                font-weight:800;
+                                white-space:nowrap;
+                            ">
+                                ${escapeAdminHtml(status.toUpperCase())}
+                            </span>
+
+                        </div>
+
+
+                        <div style="
+                            border-top:1px solid #eadbca;
+                            border-bottom:1px solid #eadbca;
+                            padding:15px 0;
+                            margin-bottom:15px;
+                        ">
+
+                            <div style="
+                                display:grid;
+                                grid-template-columns:
+                                    repeat(
+                                        auto-fit,
+                                        minmax(180px, 1fr)
+                                    );
+                                gap:12px;
+                            ">
+
+                                <div>
+                                    <div style="
+                                        font-size:11px;
+                                        color:#9a8b7d;
+                                        margin-bottom:4px;
+                                    ">
+                                        CUSTOMER
+                                    </div>
+
+                                    <strong>
+                                        ${escapeAdminHtml(
+                                            order.customer ||
+                                            "Customer"
+                                        )}
+                                    </strong>
+                                </div>
+
+
+                                <div>
+                                    <div style="
+                                        font-size:11px;
+                                        color:#9a8b7d;
+                                        margin-bottom:4px;
+                                    ">
+                                        PHONE
+                                    </div>
+
+                                    <strong>
+                                        ${escapeAdminHtml(
+                                            order.phone ||
+                                            "—"
+                                        )}
+                                    </strong>
+                                </div>
+
+
+                                <div>
+                                    <div style="
+                                        font-size:11px;
+                                        color:#9a8b7d;
+                                        margin-bottom:4px;
+                                    ">
+                                        PAYMENT
+                                    </div>
+
+                                    <strong>
+                                        ${escapeAdminHtml(
+                                            order.payment ||
+                                            "—"
+                                        )}
+                                    </strong>
+                                </div>
+
+
+                                <div>
+                                    <div style="
+                                        font-size:11px;
+                                        color:#9a8b7d;
+                                        margin-bottom:4px;
+                                    ">
+                                        ORDER TYPE
+                                    </div>
+
+                                    <strong>
+                                        ${escapeAdminHtml(
+                                            order.order_type ||
+                                            "Delivery"
+                                        )}
+                                    </strong>
+                                </div>
+
+                            </div>
+
+
+                            <div style="
+                                margin-top:15px;
+                            ">
+
+                                <div style="
+                                    font-size:11px;
+                                    color:#9a8b7d;
+                                    margin-bottom:4px;
+                                ">
+                                    ADDRESS
+                                </div>
+
+                                <div>
+                                    ${escapeAdminHtml(
+                                        order.address ||
+                                        "—"
+                                    )}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div style="
+                            margin-bottom:18px;
+                        ">
+
+                            <div style="
+                                font-size:12px;
+                                font-weight:800;
+                                color:#3b2418;
+                                margin-bottom:10px;
+                            ">
+                                ORDER ITEMS
+                            </div>
+
+                            ${
+                                items.length
+                                    ? items.map(
+                                        function (item) {
+
+                                            const quantity =
+                                                Number(
+                                                    item.quantity ||
+                                                    0
+                                                );
+
+                                            const price =
+                                                Number(
+                                                    item.price ||
+                                                    0
+                                                );
+
+                                            const itemSubtotal =
+                                                Number(
+                                                    item.subtotal ??
+                                                    (
+                                                        price *
+                                                        quantity
+                                                    )
+                                                );
+
+                                            return `
+                                                <div style="
+                                                    display:flex;
+                                                    justify-content:space-between;
+                                                    align-items:center;
+                                                    gap:15px;
+                                                    padding:9px 0;
+                                                    border-bottom:1px solid #f0e5da;
+                                                ">
+
+                                                    <div>
+                                                        <strong>
+                                                            ${escapeAdminHtml(
+                                                                item.product_name ||
+                                                                item.name ||
+                                                                "Product"
+                                                            )}
+                                                        </strong>
+
+                                                        <div style="
+                                                            font-size:12px;
+                                                            color:#83776c;
+                                                            margin-top:3px;
+                                                        ">
+                                                            ${quantity}
+                                                            ×
+                                                            ${formatAdminMoney(price)}
+                                                        </div>
+                                                    </div>
+
+                                                    <strong>
+                                                        ${formatAdminMoney(
+                                                            itemSubtotal
+                                                        )}
+                                                    </strong>
+
+                                                </div>
+                                            `;
+                                        }
+                                    ).join("")
+                                    : `
+                                        <div style="
+                                            color:#83776c;
+                                            font-size:13px;
+                                        ">
+                                            No item details available.
+                                        </div>
+                                    `
+                            }
+
+                        </div>
+
+
+                        <div style="
+                            display:flex;
+                            justify-content:space-between;
+                            align-items:flex-end;
+                            gap:20px;
+                            flex-wrap:wrap;
+                        ">
+
+                            <div>
+
+                                <div style="
+                                    font-size:13px;
+                                    color:#83776c;
+                                ">
+                                    ${itemCount}
+                                    item${itemCount === 1 ? "" : "s"}
+                                </div>
+
+                                <div style="
+                                    margin-top:5px;
+                                    font-size:20px;
+                                    font-weight:800;
+                                    color:#75401f;
+                                ">
+                                    ${formatAdminMoney(total)}
+                                </div>
+
+                            </div>
+
+
+                            <div style="
+                                display:flex;
+                                gap:8px;
+                                flex-wrap:wrap;
+                            ">
+
+                                <button
+                                    type="button"
+                                    class="admin-order-view-button"
+                                    data-order-id="${escapeAdminAttribute(orderId)}"
+                                    style="
+                                        border:0;
+                                        background:#eee4d8;
+                                        color:#3b2418;
+                                        padding:10px 16px;
+                                        border-radius:9px;
+                                        cursor:pointer;
+                                        font-weight:700;
+                                    "
+                                >
+                                    View Details
+                                </button>
+
+                                ${
+                                    status === "Pending"
+                                        ? `
+                                            <button
+                                                type="button"
+                                                class="admin-order-confirm-button"
+                                                data-order-id="${escapeAdminAttribute(orderId)}"
+                                                style="
+                                                    border:0;
+                                                    background:#75401f;
+                                                    color:white;
+                                                    padding:10px 16px;
+                                                    border-radius:9px;
+                                                    cursor:pointer;
+                                                    font-weight:700;
+                                                "
+                                            >
+                                                Confirm Order
+                                            </button>
+
+                                            <button
+                                                type="button"
+                                                class="admin-order-cancel-button"
+                                                data-order-id="${escapeAdminAttribute(orderId)}"
+                                                style="
+                                                    border:1px solid #d9b9aa;
+                                                    background:#fff8f5;
+                                                    color:#a33a2b;
+                                                    padding:10px 16px;
+                                                    border-radius:9px;
+                                                    cursor:pointer;
+                                                    font-weight:700;
+                                                "
+                                            >
+                                                Cancel
+                                            </button>
+                                        `
+                                        : ""
+                                }
+
+                                ${
+                                    status === "Processing"
+                                        ? `
+                                            <button
+                                                type="button"
+                                                class="admin-order-complete-button"
+                                                data-order-id="${escapeAdminAttribute(orderId)}"
+                                                style="
+                                                    border:0;
+                                                    background:#75401f;
+                                                    color:white;
+                                                    padding:10px 16px;
+                                                    border-radius:9px;
+                                                    cursor:pointer;
+                                                    font-weight:700;
+                                                "
+                                            >
+                                                Mark Completed
+                                            </button>
+                                        `
+                                        : ""
+                                }
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                `;
+            }
+        )
+        .join("");
+}
+
+
+/* ---------------------------------------------------------
+   ORDER STATUS STYLE
+   --------------------------------------------------------- */
+function getAdminOrderStatusStyle(status) {
+
+    switch (
+        String(status || "").toLowerCase()
+    ) {
+
+        case "processing":
+            return {
+                background: "#e8eef7",
+                color: "#355070"
+            };
+
+        case "completed":
+            return {
+                background: "#e7f2e7",
+                color: "#3e7045"
+            };
+
+        case "cancelled":
+            return {
+                background: "#f7e7e4",
+                color: "#a33a2b"
+            };
+
+        case "pending":
+        default:
+            return {
+                background: "#fff0c9",
+                color: "#9a6900"
+            };
+    }
+}
+
+
+/* ---------------------------------------------------------
+   UPDATE ORDER STATUS
+   --------------------------------------------------------- */
+async function updateAdminOrderStatus(
+    orderId,
+    newStatus
+) {
+
+    if (!orderId) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `/api/orders/${encodeURIComponent(orderId)}/status`,
+            {
+                method: "PATCH",
+                credentials: "include",
+                headers: {
+                    "Content-Type":
+                        "application/json",
+                    "Accept":
+                        "application/json"
+                },
+                body: JSON.stringify({
+                    status: newStatus
+                })
+            }
+        );
+
+        let result = {};
+
+        try {
+            result = await response.json();
+        }
+        catch (error) {
+            result = {};
+        }
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.error ||
+                result.message ||
+                "Unable to update order status."
+            );
+        }
+
+        showToast(
+            `Order ${newStatus.toLowerCase()} successfully.`,
+            "success"
+        );
+
+        await loadOnlineOrders();
+
+    }
+    catch (error) {
+
+        console.error(
+            "UPDATE ORDER STATUS ERROR:",
+            error
+        );
+
+        showToast(
+            error.message ||
+            "Unable to update order status.",
+            "error"
+        );
+    }
+}
+
+
+/* ---------------------------------------------------------
+   VIEW ORDER DETAILS
+   --------------------------------------------------------- */
+async function viewAdminOrder(orderId) {
+
+    if (!orderId) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `/api/orders/${encodeURIComponent(orderId)}`,
+            {
+                method: "GET",
+                credentials: "include",
+                headers: {
+                    "Accept":
+                        "application/json"
+                }
+            }
+        );
+
+        let result = {};
+
+        try {
+            result = await response.json();
+        }
+        catch (error) {
+            result = {};
+        }
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.error ||
+                result.message ||
+                "Unable to load order details."
+            );
+        }
+
+        const order =
+            result.order ||
+            result.data ||
+            result;
+
+        showAdminOrderDetailsModal(order);
+
+    }
+    catch (error) {
+
+        console.error(
+            "VIEW ORDER ERROR:",
+            error
+        );
+
+        showToast(
+            error.message ||
+            "Unable to load order details.",
+            "error"
+        );
+    }
+}
+
+
+/* ---------------------------------------------------------
+   ORDER DETAILS MODAL
+   --------------------------------------------------------- */
+function showAdminOrderDetailsModal(order) {
+
+    document
+        .getElementById("adminOrderDetailsModal")
+        ?.remove();
+
+    const items =
+        Array.isArray(order.items)
+            ? order.items
+            : [];
+
+    const modal = document.createElement("div");
+
+    modal.id =
+        "adminOrderDetailsModal";
+
+    modal.style.cssText = `
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,0.45);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        z-index:99999;
+        padding:20px;
+    `;
+
+    modal.innerHTML = `
+        <div style="
+            width:100%;
+            max-width:650px;
+            max-height:90vh;
+            overflow:auto;
+            background:#fffdf9;
+            border-radius:18px;
+            padding:25px;
+            box-shadow:0 20px 50px rgba(0,0,0,0.25);
+        ">
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:flex-start;
+                gap:15px;
+                margin-bottom:20px;
+            ">
+
+                <div>
+
+                    <div style="
+                        font-size:11px;
+                        font-weight:800;
+                        letter-spacing:1.5px;
+                        color:#a06a42;
+                    ">
+                        ONLINE ORDER
+                    </div>
+
+                    <h2 style="
+                        margin:5px 0 0;
+                        color:#3b2418;
+                        font-family:Georgia,serif;
+                    ">
+                        ${escapeAdminHtml(
+                            order.id || ""
+                        )}
+                    </h2>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="closeAdminOrderDetails"
+                    style="
+                        border:0;
+                        background:#eee4d8;
+                        border-radius:50%;
+                        width:36px;
+                        height:36px;
+                        cursor:pointer;
+                        font-size:20px;
+                    "
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div style="
+                display:grid;
+                grid-template-columns:
+                    repeat(
+                        auto-fit,
+                        minmax(200px, 1fr)
+                    );
+                gap:15px;
+                margin-bottom:20px;
+            ">
+
+                <div>
+                    <small style="color:#83776c;">
+                        Customer
+                    </small>
+                    <div>
+                        <strong>
+                            ${escapeAdminHtml(
+                                order.customer ||
+                                "—"
+                            )}
+                        </strong>
+                    </div>
+                </div>
+
+                <div>
+                    <small style="color:#83776c;">
+                        Phone
+                    </small>
+                    <div>
+                        <strong>
+                            ${escapeAdminHtml(
+                                order.phone ||
+                                "—"
+                            )}
+                        </strong>
+                    </div>
+                </div>
+
+                <div>
+                    <small style="color:#83776c;">
+                        Payment
+                    </small>
+                    <div>
+                        <strong>
+                            ${escapeAdminHtml(
+                                order.payment ||
+                                "—"
+                            )}
+                        </strong>
+                    </div>
+                </div>
+
+                <div>
+                    <small style="color:#83776c;">
+                        Status
+                    </small>
+                    <div>
+                        <strong>
+                            ${escapeAdminHtml(
+                                order.status ||
+                                "Pending"
+                            )}
+                        </strong>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div style="
+                background:#f7f0e8;
+                border-radius:12px;
+                padding:15px;
+                margin-bottom:20px;
+            ">
+
+                <small style="
+                    color:#83776c;
+                ">
+                    Delivery Address
+                </small>
+
+                <div style="
+                    margin-top:5px;
+                ">
+                    ${escapeAdminHtml(
+                        order.address ||
+                        "—"
+                    )}
+                </div>
+
+            </div>
+
+
+            <h3 style="
+                margin:0 0 12px;
+                color:#3b2418;
+            ">
+                Items
+            </h3>
+
+
+            <div>
+                ${
+                    items.length
+                        ? items.map(
+                            function (item) {
+
+                                const quantity =
+                                    Number(
+                                        item.quantity ||
+                                        0
+                                    );
+
+                                const price =
+                                    Number(
+                                        item.price ||
+                                        0
+                                    );
+
+                                const subtotal =
+                                    Number(
+                                        item.subtotal ??
+                                        (
+                                            price *
+                                            quantity
+                                        )
+                                    );
+
+                                return `
+                                    <div style="
+                                        display:flex;
+                                        justify-content:space-between;
+                                        gap:15px;
+                                        padding:12px 0;
+                                        border-bottom:1px solid #eadbca;
+                                    ">
+
+                                        <div>
+                                            <strong>
+                                                ${escapeAdminHtml(
+                                                    item.product_name ||
+                                                    item.name ||
+                                                    "Product"
+                                                )}
+                                            </strong>
+
+                                            <div style="
+                                                font-size:12px;
+                                                color:#83776c;
+                                                margin-top:3px;
+                                            ">
+                                                Qty:
+                                                ${quantity}
+                                                ×
+                                                ${formatAdminMoney(price)}
+                                            </div>
+                                        </div>
+
+                                        <strong>
+                                            ${formatAdminMoney(
+                                                subtotal
+                                            )}
+                                        </strong>
+
+                                    </div>
+                                `;
+                            }
+                        ).join("")
+                        : `
+                            <p>
+                                No item information available.
+                            </p>
+                        `
+                }
+            </div>
+
+
+            <div style="
+                margin-top:20px;
+                border-top:1px solid #eadbca;
+                padding-top:15px;
+            ">
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    margin-bottom:7px;
+                ">
+                    <span>Subtotal</span>
+                    <strong>
+                        ${formatAdminMoney(
+                            Number(
+                                order.subtotal || 0
+                            )
+                        )}
+                    </strong>
+                </div>
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    margin-bottom:7px;
+                ">
+                    <span>Delivery</span>
+                    <strong>
+                        ${formatAdminMoney(
+                            Number(
+                                order.delivery || 0
+                            )
+                        )}
+                    </strong>
+                </div>
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    margin-top:12px;
+                    padding-top:12px;
+                    border-top:1px solid #eadbca;
+                    font-size:20px;
+                ">
+                    <strong>Total</strong>
+                    <strong style="color:#75401f;">
+                        ${formatAdminMoney(
+                            Number(
+                                order.total || 0
+                            )
+                        )}
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    document
+        .getElementById(
+            "closeAdminOrderDetails"
+        )
+        ?.addEventListener(
+            "click",
+            function () {
+                modal.remove();
+            }
+        );
+
+    modal.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target === modal
+            ) {
+                modal.remove();
+            }
+
+        }
+    );
+}
+
+
+/* ---------------------------------------------------------
+   ADMIN ORDER HTML HELPERS
+   --------------------------------------------------------- */
+function escapeAdminHtml(value) {
+
+    return String(
+        value ?? ""
+    )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+}
+
+
+function escapeAdminAttribute(value) {
+
+    return escapeAdminHtml(value);
+}
+
+
+function formatAdminMoney(value) {
+
+    return new Intl.NumberFormat(
+        "en-PH",
+        {
+            style: "currency",
+            currency: "PHP"
+        }
+    ).format(
+        Number(value || 0)
+    );
+}
+
+
+function formatAdminOrderDate(value) {
+
+    if (!value) {
+        return "Date unavailable";
+    }
+
+    const date =
+        new Date(value);
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+        return String(value);
+    }
+
+    return date.toLocaleString(
+        "en-PH",
+        {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "numeric",
+            minute: "2-digit"
+        }
+    );
+}
+
+
+/* =========================================================
+   CREATE ONLINE ORDERS PAGE
+   ========================================================= */
+function createOnlineOrdersPage() {
+
+    if (
+        document.getElementById(
+            "page-online-orders"
+        )
+    ) {
+        return;
+    }
+
+    const page =
+        document.createElement("section");
+
+    page.id =
+        "page-online-orders";
+
+    page.className =
+        "page hidden";
+
+    page.innerHTML = `
+
+        
+
+
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:15px;
+            margin-bottom:18px;
+        ">
+
+            
+
+            <button
+                type="button"
+                id="refreshOnlineOrders"
+                style="
+                    border:0;
+                    background:#eee4d8;
+                    color:#3b2418;
+                    padding:10px 16px;
+                    border-radius:9px;
+                    cursor:pointer;
+                    font-weight:700;
+                "
+            >
+                ↻ Refresh
+            </button>
+
+        </div>
+
+
+        <div id="onlineOrdersContainer"></div>
+
+    `;
+
+
+    /*
+     * IMPORTANT:
+     *
+     * Put Online Orders INSIDE the existing
+     * main-content area.
+     *
+     * This keeps the existing sidebar/navbar visible.
+     */
+
+    const mainContent =
+        document.querySelector(
+            ".main-content"
+        );
+
+
+    if (mainContent) {
+
+        mainContent.appendChild(
+            page
+        );
+
+    }
+    else {
+
+        console.error(
+            "main-content was not found."
+        );
+
+        return;
+
+    }
+
+
+    document
+        .getElementById(
+            "refreshOnlineOrders"
+        )
+        ?.addEventListener(
+            "click",
+            loadOnlineOrders
+        );
+}
+
+/* =========================================================
+   ADD ONLINE ORDERS BUTTON TO ADMIN NAVIGATION
+   ========================================================= */
+function createOnlineOrdersNavigation() {
+
+    if (
+        document.getElementById(
+            "onlineOrdersNavButton"
+        )
+    ) {
+        return;
+    }
+
+
+    const navMenu =
+        document.querySelector(
+            ".nav-menu"
+        );
+
+
+    if (!navMenu) {
+
+        console.warn(
+            "Admin navigation menu was not found."
+        );
+
+        return;
+
+    }
+
+
+    const navButtons =
+        navMenu.querySelectorAll(
+            ".nav"
+        );
+
+
+    if (!navButtons.length) {
+
+        console.warn(
+            "Admin navigation buttons were not found."
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Put Online Orders before Reports.
+     */
+
+    const reportsButton =
+        Array.from(
+            navButtons
+        ).find(
+            function (button) {
+
+                return (
+                    button.dataset.page ===
+                    "reports"
+                );
+
+            }
+        );
+
+
+    const button =
+        document.createElement("button");
+
+
+    button.type =
+        "button";
+
+
+    button.id =
+        "onlineOrdersNavButton";
+
+
+    button.className =
+        "nav";
+
+
+    button.dataset.page =
+        "online-orders";
+
+
+    button.innerHTML = `
+        🛍️ Orders
+    `;
+
+
+    if (reportsButton) {
+
+        navMenu.insertBefore(
+            button,
+            reportsButton
+        );
+
+    }
+    else {
+
+        navMenu.appendChild(
+            button
+        );
+
+    }
+
+
+    button.addEventListener(
+        "click",
+        async function () {
+
+            /*
+             * Remove active state from all
+             * navigation buttons.
+             */
+
+            navMenu
+                .querySelectorAll(
+                    ".nav"
+                )
+                .forEach(
+                    function (navButton) {
+
+                        navButton.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+            /*
+             * Activate Online Orders.
+             */
+
+            button.classList.add(
+                "active"
+            );
+
+
+            /*
+             * Hide ONLY normal page sections.
+             *
+             * Do NOT hide the sidebar.
+             * Do NOT hide main-content.
+             */
+
+            document
+                .querySelectorAll(
+                    ".main-content .page"
+                )
+                .forEach(
+                    function (page) {
+
+                        page.classList.add(
+                            "hidden"
+                        );
+
+                    }
+                );
+
+
+            /*
+             * Show Online Orders.
+             */
+
+            const page =
+                document.getElementById(
+                    "page-online-orders"
+                );
+
+
+            if (page) {
+
+                page.classList.remove(
+                    "hidden"
+                );
+
+            }
+
+
+            /*
+             * Update header title.
+             */
+
+            const pageTitle =
+                document.getElementById(
+                    "pageTitle"
+                );
+
+
+            if (pageTitle) {
+
+                pageTitle.textContent =
+                    "Orders";
+
+            }
+
+
+            /*
+             * Load database orders.
+             */
+
+            await loadOnlineOrders();
+
+        }
+    );
+}
+
+
+/* =========================================================
+   ONLINE ORDER BUTTON EVENTS
+   ========================================================= */
+document.addEventListener(
+    "click",
+    async function (event) {
+
+        const confirmButton =
+            event.target.closest(
+                ".admin-order-confirm-button"
+            );
+
+        if (confirmButton) {
+
+            const orderId =
+                confirmButton.dataset.orderId;
+
+            const confirmed =
+                window.confirm(
+                    "Confirm this customer order?"
+                );
+
+            if (!confirmed) {
+                return;
+            }
+
+            await updateAdminOrderStatus(
+                orderId,
+                "Processing"
+            );
+
+            return;
+        }
+
+
+        const completeButton =
+            event.target.closest(
+                ".admin-order-complete-button"
+            );
+
+        if (completeButton) {
+
+            const orderId =
+                completeButton.dataset.orderId;
+
+            const confirmed =
+                window.confirm(
+                    "Mark this order as completed?"
+                );
+
+            if (!confirmed) {
+                return;
+            }
+
+            await updateAdminOrderStatus(
+                orderId,
+                "Completed"
+            );
+
+            return;
+        }
+
+
+        const cancelButton =
+            event.target.closest(
+                ".admin-order-cancel-button"
+            );
+
+        if (cancelButton) {
+
+            const orderId =
+                cancelButton.dataset.orderId;
+
+            const confirmed =
+                window.confirm(
+                    "Cancel this customer order?"
+                );
+
+            if (!confirmed) {
+                return;
+            }
+
+            await updateAdminOrderStatus(
+                orderId,
+                "Cancelled"
+            );
+
+            return;
+        }
+
+
+        const viewButton =
+            event.target.closest(
+                ".admin-order-view-button"
+            );
+
+        if (viewButton) {
+
+            const orderId =
+                viewButton.dataset.orderId;
+
+            await viewAdminOrder(
+                orderId
+            );
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INITIALIZE ONLINE ORDERS
+   ========================================================= */
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        setTimeout(
+            function () {
+
+                createOnlineOrdersPage();
+
+                createOnlineOrdersNavigation();
+
+            },
+            100
+        );
+
+    }
+);
+</script>
+
+
+</body>
+
+</html>

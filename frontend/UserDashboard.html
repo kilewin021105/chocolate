@@ -1,0 +1,4379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dalareich Chocolate House - User Dashboard</title>
+
+    <!-- User Dashboard CSS -->
+    <link rel="stylesheet" href="../css/userStyle.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         USER DASHBOARD
+         ===================================================== -->
+
+    <div class="user-app">
+
+        <!-- =================================================
+             SIDEBAR
+             ================================================= -->
+
+        <aside class="user-sidebar">
+
+            <div class="user-brand">
+
+                <div class="brand-icon">
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="28"
+                        height="28"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true">
+
+                        <path
+                            d="M3 10.5L12 3L21 10.5"
+                            stroke="#E8D6C3"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"/>
+
+                        <path
+                            d="M5 9.5V21H19V9.5"
+                            stroke="#E8D6C3"
+                            stroke-width="2"
+                            stroke-linejoin="round"/>
+
+                        <path
+                            d="M9 21V15H15V21"
+                            stroke="#E8D6C3"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"/>
+
+                    </svg>
+                </div>
+
+                <div>
+                    <strong>Dalareich</strong>
+                    <small>Chocolate House</small>
+                </div>
+
+            </div>
+
+
+            <!-- Navigation -->
+
+            <nav class="user-nav">
+
+                <!-- SHOP -->
+
+                <button
+                    class="user-nav-item active"
+                    type="button"
+                    data-section="shopSection">
+
+                    <span>🛍️</span>
+                    <span>Shop</span>
+
+                </button>
+
+
+                <!-- MY ORDERS -->
+
+                <button
+                    class="user-nav-item"
+                    type="button"
+                    data-section="ordersSection">
+
+                    <span>📦</span>
+                    <span>My Orders</span>
+
+                </button>
+
+
+                <!-- ACTIVITIES -->
+
+                <button
+                    class="user-nav-item"
+                    type="button"
+                    data-section="activitiesSection">
+
+                    <span>📋</span>
+                    <span>Activities</span>
+
+                </button>
+
+
+                <!-- MY CART -->
+
+                <button
+                    class="user-nav-item"
+                    type="button"
+                    data-section="cartSection">
+
+                    <span>🛒</span>
+                    <span>My Cart</span>
+
+                    <span
+                        class="cart-count"
+                        id="sidebarCartCount">
+                        0
+                    </span>
+
+                </button>
+
+
+                <!-- REPORTS / COMPLAINT -->
+
+                <button
+                    class="user-nav-item"
+                    type="button"
+                    data-section="reportsSection">
+
+                    <span>📊</span>
+                    <span>Reports</span>
+
+                </button>
+
+            </nav>
+
+
+            <!-- Sidebar Bottom -->
+
+            <div class="user-sidebar-bottom">
+
+                <button
+                    class="user-nav-item logout-button"
+                    type="button"
+                    id="logoutButton">
+
+                    <span>🚪</span>
+                    <span>Logout</span>
+
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             MAIN CONTENT
+             ================================================= -->
+
+        <main class="user-main">
+
+
+            <!-- =============================================
+                 HEADER
+                 ============================================= -->
+
+            <header class="user-header">
+
+                <div class="header-left">
+
+                    <span class="eyebrow">
+                        DALAREICH CHOCOLATE HOUSE
+                    </span>
+
+                    <h1 id="pageTitle">
+                        Chocolate Shop
+                    </h1>
+
+                    <p id="pageSubtitle">
+                        Discover and order your favorite chocolates.
+                    </p>
+
+                </div>
+
+
+                <div class="header-right">
+
+                    <div class="welcome-user">
+
+                        <span class="welcome-label">
+                            Welcome
+                        </span>
+
+                        <strong id="currentUserName">
+                            User
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        class="header-cart-button"
+                        type="button"
+                        id="headerCartButton">
+
+                        <span>🛒</span>
+
+                        <span>Cart</span>
+
+                        <b id="headerCartCount">
+                            0
+                        </b>
+
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- =============================================
+                 SHOP SECTION
+                 ============================================= -->
+
+            <section
+                id="shopSection"
+                class="user-section active-section">
+
+                <!-- Search and Filter -->
+
+                <div class="shop-toolbar">
+
+                    <div class="search-box">
+
+                        <span>🔎</span>
+
+                        <input
+                            type="search"
+                            id="productSearch"
+                            placeholder="Search chocolates..."
+                            autocomplete="off">
+
+                    </div>
+
+
+                    <select id="categoryFilter">
+
+                        <option value="all">
+                            All Categories
+                        </option>
+
+                        <option value="Chocolate Bars">
+                            Chocolate Bars
+                        </option>
+
+                        <option value="Tablea">
+                            Tablea
+                        </option>
+
+                        <option value="Cacao Products">
+                            Cacao Products
+                        </option>
+
+                        <option value="Special Products">
+                            Special Products
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Category Quick Filters -->
+
+                <div class="category-list">
+
+                    <button
+                        class="category-button active"
+                        type="button"
+                        data-category="all">
+                        All
+                    </button>
+
+                    <button
+                        class="category-button"
+                        type="button"
+                        data-category="Chocolate Bars">
+                        Chocolate Bars
+                    </button>
+
+                    <button
+                        class="category-button"
+                        type="button"
+                        data-category="Tablea">
+                        Tablea
+                    </button>
+
+                    <button
+                        class="category-button"
+                        type="button"
+                        data-category="Cacao Products">
+                        Cacao Products
+                    </button>
+
+                    <button
+                        class="category-button"
+                        type="button"
+                        data-category="Special Products">
+                        Special Products
+                    </button>
+
+                </div>
+
+
+                <!-- Products -->
+
+                <div
+                    class="product-grid"
+                    id="productGrid">
+
+                    <!-- Product cards are loaded here -->
+
+                </div>
+
+
+                <!-- Empty Product Message -->
+
+                <div
+                    class="empty-state hidden"
+                    id="noProducts">
+
+                    <div class="empty-icon">
+                        🍫
+                    </div>
+
+                    <h3>
+                        No products found
+                    </h3>
+
+                    <p>
+                        Try another search or category.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =============================================
+                 ORDERS SECTION
+                 ============================================= -->
+
+            <section
+                id="ordersSection"
+                class="user-section">
+
+                <!-- Order Status Filters -->
+
+                <div class="order-filters">
+
+                    <button
+                        type="button"
+                        class="order-filter active"
+                        data-status="all">
+                        All
+                    </button>
+
+                    <button
+                        type="button"
+                        class="order-filter"
+                        data-status="Pending">
+                        Pending
+                    </button>
+
+                    <button
+                        type="button"
+                        class="order-filter"
+                        data-status="Processing">
+                        Processing
+                    </button>
+
+                    <button
+                        type="button"
+                        class="order-filter"
+                        data-status="Completed">
+                        Completed
+                    </button>
+
+                    <button
+                        type="button"
+                        class="order-filter"
+                        data-status="Cancelled">
+                        Cancelled
+                    </button>
+
+                </div>
+
+
+                <!-- Orders -->
+
+                <div
+                    class="orders-list"
+                    id="ordersList">
+
+                    <!-- Orders are loaded here -->
+
+                </div>
+
+
+                <div
+                    class="empty-state hidden"
+                    id="noOrders">
+
+                    <div class="empty-icon">
+                        📦
+                    </div>
+
+                    <h3>
+                        No orders yet
+                    </h3>
+
+                    <p>
+                        Your orders will appear here after you place an order.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        data-go-shop>
+                        Start Shopping
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =============================================
+                 ACTIVITIES SECTION
+                 ============================================= -->
+
+            <section
+                id="activitiesSection"
+                class="user-section">
+
+                <div
+                    class="activities-list"
+                    id="activitiesList">
+
+                    <!-- Activities loaded here -->
+
+                </div>
+
+
+                <div
+                    class="empty-state hidden"
+                    id="noActivities">
+
+                    <div class="empty-icon">
+                        📋
+                    </div>
+
+                    <h3>
+                        No activities yet
+                    </h3>
+
+                    <p>
+                        Your recent activities will appear here.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =============================================
+                 CART SECTION
+                 ============================================= -->
+
+            <section
+                id="cartSection"
+                class="user-section">
+
+                <div class="cart-layout">
+
+                    <!-- Cart Items -->
+
+                    <div class="cart-card">
+
+                        <div class="cart-card-header">
+
+                            <h3>
+                                Cart Items
+                            </h3>
+
+                            <button
+                                type="button"
+                                class="clear-cart-button"
+                                id="clearCartButton">
+                                Clear Cart
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="cart-items"
+                            id="cartItems">
+
+                            <!-- Cart items loaded here -->
+
+                        </div>
+
+
+                        <div
+                            class="empty-state hidden"
+                            id="emptyCart">
+
+                            <div class="empty-icon">
+                                🛒
+                            </div>
+
+                            <h3>
+                                Your cart is empty
+                            </h3>
+
+                            <p>
+                                Add chocolates from the shop.
+                            </p>
+
+                            <button
+                                type="button"
+                                class="primary-button"
+                                data-go-shop>
+                                Browse Products
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Order Summary -->
+
+                    <div class="summary-card">
+
+                        <h3>
+                            Order Summary
+                        </h3>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Items
+                            </span>
+
+                            <strong id="summaryItems">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Subtotal
+                            </span>
+
+                            <strong id="summarySubtotal">
+                                ₱0.00
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Delivery
+                            </span>
+
+                            <strong id="summaryDelivery">
+                                ₱0.00
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-divider"></div>
+
+
+                        <div class="summary-total">
+
+                            <span>
+                                Total
+                            </span>
+
+                            <strong id="summaryTotal">
+                                ₱0.00
+                            </strong>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="checkout-button"
+                            id="checkoutButton">
+                            Proceed to Checkout
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =============================================
+                 REPORTS / COMPLAINT SECTION
+                 ============================================= -->
+
+            <section
+                id="reportsSection"
+                class="user-section">
+
+                <div class="section-header">
+
+                   
+
+
+                <div class="report-card">
+
+                    <form id="reportForm">
+
+                        <div class="form-group">
+
+                            <label for="reportSubject">
+                                Subject
+                            </label>
+
+                            <input
+                                type="text"
+                                id="reportSubject"
+                                name="subject"
+                                placeholder="What is your complaint about?"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="reportType">
+                                Report Type
+                            </label>
+
+                            <select
+                                id="reportType"
+                                name="type"
+                                required>
+
+                                <option value="">
+                                    Select report type
+                                </option>
+
+                                <option value="Order Problem">
+                                    Order Problem
+                                </option>
+
+                                <option value="Product Problem">
+                                    Product Problem
+                                </option>
+
+                                <option value="Payment Problem">
+                                    Payment Problem
+                                </option>
+
+                                <option value="Delivery Problem">
+                                    Delivery Problem
+                                </option>
+
+                                <option value="Service Complaint">
+                                    Service Complaint
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="reportOrderId">
+                                Order ID
+                                <span>(optional)</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="reportOrderId"
+                                name="order_id"
+                                placeholder="Example: ORD-1001">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="reportMessage">
+                                Complaint / Report
+                            </label>
+
+                            <textarea
+                                id="reportMessage"
+                                name="message"
+                                rows="6"
+                                placeholder="Please describe the problem..."
+                                required></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="primary-button">
+                            Submit Report
+                        </button>
+
+                    </form>
+
+
+                    <div
+                        id="reportMessageBox"
+                        class="report-message-box"
+                        style="display: none;">
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- =====================================================
+             PRODUCT MODAL
+             ===================================================== -->
+
+        <div
+            class="modal hidden"
+            id="productModal">
+
+            <div class="modal-overlay"></div>
+
+            <div class="modal-card">
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    data-close-modal>
+                    ×
+                </button>
+
+
+                <div
+                    class="product-modal-image"
+                    id="modalProductImage">
+                </div>
+
+
+                <div class="product-modal-content">
+
+                    <span
+                        class="product-category"
+                        id="modalProductCategory">
+                        Chocolate
+                    </span>
+
+
+                    <h2 id="modalProductName">
+                        Product Name
+                    </h2>
+
+
+                    <p
+                        class="product-description"
+                        id="modalProductDescription">
+                        Product description.
+                    </p>
+
+
+                    <div class="modal-product-bottom">
+
+                        <strong
+                            class="modal-price"
+                            id="modalProductPrice">
+                            ₱0.00
+                        </strong>
+
+
+                        <div class="quantity-control">
+
+                            <button
+                                type="button"
+                                id="modalDecreaseQuantity">
+                                −
+                            </button>
+
+
+                            <input
+                                type="number"
+                                id="modalQuantity"
+                                value="1"
+                                min="1">
+
+
+                            <button
+                                type="button"
+                                id="modalIncreaseQuantity">
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="add-to-cart-button"
+                        id="modalAddToCart">
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             CHECKOUT MODAL
+             ===================================================== -->
+
+        <div
+            class="modal hidden"
+            id="checkoutModal">
+
+            <div class="modal-overlay"></div>
+
+            <div class="modal-card checkout-modal">
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    data-close-modal
+                    onclick="closeModals()">
+                    ×
+                </button>
+
+
+                <div class="checkout-header">
+
+                    <span class="eyebrow">
+                        CHECKOUT
+                    </span>
+
+                    <h2>
+                        Complete Your Order
+                    </h2>
+
+                    <p>
+                        Enter your order details below.
+                    </p>
+
+                </div>
+
+
+                <form id="checkoutForm">
+
+                    <div class="form-group">
+
+                        <label for="customerName">
+                            Customer Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customerName"
+                            name="customerName"
+                            required
+                            placeholder="Enter your name">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="customerPhone">
+                            Contact Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="customerPhone"
+                            name="customerPhone"
+                            required
+                            placeholder="Enter contact number">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="deliveryAddress">
+                            Delivery / Pickup Address
+                        </label>
+
+                        <textarea
+                            id="deliveryAddress"
+                            name="deliveryAddress"
+                            rows="3"
+                            required
+                            placeholder="Enter address or pickup details"></textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="paymentMethod">
+                            Payment Method
+                        </label>
+
+                        <select
+                            id="paymentMethod"
+                            name="paymentMethod"
+                            required>
+
+                            <option value="">
+                                Select payment method
+                            </option>
+
+                            <option value="Cash">
+                                Cash
+                            </option>
+
+                            <option value="GCash">
+                                GCash
+                            </option>
+
+                            <option value="Bank Transfer">
+                                Bank Transfer
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="checkout-summary">
+
+                        <div>
+
+                            <span>
+                                Order Total
+                            </span>
+
+                            <strong id="checkoutTotal">
+                                ₱0.00
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button checkout-submit">
+                        Place Order
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             ORDER DETAILS MODAL
+             ===================================================== -->
+
+        <div
+            class="modal hidden"
+            id="orderDetailsModal">
+
+            <div class="modal-overlay"></div>
+
+            <div class="modal-card order-details-modal">
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    data-close-modal>
+                    ×
+                </button>
+
+
+                <div class="checkout-header">
+
+                    <span class="eyebrow">
+                        ORDER DETAILS
+                    </span>
+
+                    <h2 id="orderDetailsTitle">
+                        Order
+                    </h2>
+
+                </div>
+
+
+                <div id="orderDetailsContent">
+
+                    <!-- Order details loaded here -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="./js/userReport.js"></script>
+
+<script>
+
+    // ============================================================
+// HTML ESCAPE HELPER
+// ============================================================
+
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+/* =====================================================
+   PRODUCTS
+   Loaded from Supabase through Flask API
+   ===================================================== */
+
+let products = [];
+
+
+/* =====================================================
+   CART
+   ===================================================== */
+
+let cart = [];
+
+try {
+
+    const savedCart = JSON.parse(
+        localStorage.getItem("dalareichUserCart") || "[]"
+    );
+
+    if (Array.isArray(savedCart)) {
+
+        cart = savedCart
+            .map(function (item) {
+
+                if (!item || typeof item !== "object") {
+                    return null;
+                }
+
+                const productId = Number(
+                    item.product_id ??
+                    item.productId ??
+                    item.id
+                );
+
+                const quantity = Number(
+                    item.quantity ?? 1
+                );
+
+                if (
+                    !Number.isFinite(productId) ||
+                    productId <= 0
+                ) {
+                    return null;
+                }
+
+                if (
+                    !Number.isFinite(quantity) ||
+                    quantity <= 0
+                ) {
+                    return null;
+                }
+
+                return {
+                    ...item,
+                    productId: productId,
+                    product_id: productId,
+                    quantity: quantity
+                };
+
+            })
+            .filter(function (item) {
+                return item !== null;
+            });
+    }
+
+} catch (error) {
+
+    console.warn(
+        "Unable to load saved cart:",
+        error
+    );
+
+    cart = [];
+
+}
+
+
+let currentUser = (() => {
+
+    try {
+
+        const savedUser =
+            JSON.parse(
+                localStorage.getItem("dalareichUser") ||
+                localStorage.getItem("dalareichCurrentUser") ||
+                "null"
+            );
+
+        return savedUser || null;
+
+    } catch {
+
+        return null;
+    }
+
+})();
+
+
+let selectedProduct = null;
+
+
+
+        /* =====================================================
+           DOM ELEMENTS
+           ===================================================== */
+
+        const productGrid =
+            document.getElementById(
+                "productGrid"
+            );
+
+        const productSearch =
+            document.getElementById(
+                "productSearch"
+            );
+
+        const categoryFilter =
+            document.getElementById(
+                "categoryFilter"
+            );
+
+        const cartItems =
+            document.getElementById(
+                "cartItems"
+            );
+
+        const sidebarCartCount =
+            document.getElementById(
+                "sidebarCartCount"
+            );
+
+        const headerCartCount =
+            document.getElementById(
+                "headerCartCount"
+            );
+
+        const summaryItems =
+            document.getElementById(
+                "summaryItems"
+            );
+
+        const summarySubtotal =
+            document.getElementById(
+                "summarySubtotal"
+            );
+
+        const summaryDelivery =
+            document.getElementById(
+                "summaryDelivery"
+            );
+
+        const summaryTotal =
+            document.getElementById(
+                "summaryTotal"
+            );
+
+        const checkoutTotal =
+            document.getElementById(
+                "checkoutTotal"
+            );
+
+
+
+        /* =====================================================
+   ACTIVITIES
+   ===================================================== */
+
+let activities =
+    JSON.parse(
+        localStorage.getItem(
+            "dalareichUserActivities"
+        )
+    ) || [];
+
+
+/* =====================================================
+   SAVE ACTIVITIES
+   ===================================================== */
+
+function saveActivities() {
+
+    localStorage.setItem(
+        "dalareichUserActivities",
+        JSON.stringify(
+            activities
+        )
+    );
+
+}
+
+
+/* =====================================================
+   REMOVE ACTIVITIES OLDER THAN 30 DAYS
+   ===================================================== */
+
+function removeExpiredActivities() {
+
+    const thirtyDays =
+        30 * 24 * 60 * 60 * 1000;
+
+    const now =
+        Date.now();
+
+
+    activities =
+        activities.filter(
+            activity => {
+
+                const activityTime =
+                    activity.timestamp ||
+                    Date.parse(
+                        activity.date
+                    );
+
+
+                return (
+                    !isNaN(activityTime) &&
+                    (now - activityTime) < thirtyDays
+                );
+
+            }
+        );
+
+
+    saveActivities();
+
+}
+
+
+/* =====================================================
+   ADD ACTIVITY
+   ===================================================== */
+
+function addActivity(
+    message,
+    icon = "📋"
+) {
+
+    activities.unshift({
+
+        id:
+            Date.now(),
+
+        message:
+            message,
+
+        icon:
+            icon,
+
+        date:
+            new Date()
+                .toLocaleString(),
+
+        timestamp:
+            Date.now()
+
+    });
+
+
+    saveActivities();
+
+    loadActivities();
+
+}
+
+
+/* =====================================================
+   LOAD ACTIVITIES
+   ===================================================== */
+
+function loadActivities() {
+
+    /* Remove activities older than 30 days */
+    removeExpiredActivities();
+
+    const list =
+        document.getElementById(
+            "activitiesList"
+        );
+
+    const empty =
+        document.getElementById(
+            "noActivities"
+        );
+
+    const activityCount =
+        document.getElementById(
+            "activityCount"
+        );
+
+    if (!list || !empty) {
+        return;
+    }
+
+    if (activityCount) {
+        activityCount.textContent =
+            activities.length;
+    }
+
+    list.innerHTML = "";
+
+    if (
+        activities.length === 0
+    ) {
+        empty.classList.remove(
+            "hidden"
+        );
+        return;
+    }
+
+    empty.classList.add(
+        "hidden"
+    );
+
+    activities.forEach(
+        activity => {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+            card.className =
+                "activity-card";
+
+            /* Calculate days remaining */
+            const activityTime =
+                activity.timestamp ||
+                Date.parse(
+                    activity.date
+                );
+
+            const thirtyDays =
+                30 *
+                24 *
+                60 *
+                60 *
+                1000;
+
+            const timeRemaining =
+                thirtyDays -
+                (
+                    Date.now() -
+                    activityTime
+                );
+
+            const daysRemaining =
+                Math.max(
+                    0,
+                    Math.ceil(
+                        timeRemaining /
+                        (
+                            24 *
+                            60 *
+                            60 *
+                            1000
+                        )
+                    )
+                );
+
+            card.innerHTML = `
+                <div class="activity-icon">
+                    ${activity.icon}
+                </div>
+
+                <div class="activity-content">
+
+                    <strong>
+                        ${activity.message}
+                    </strong>
+
+                    <span>
+                        ${activity.date}
+                    </span>
+
+                    <small class="activity-days-remaining">
+                        ${daysRemaining}
+                        ${
+                            daysRemaining === 1
+                                ? "day"
+                                : "days"
+                        }
+                        remaining
+                    </small>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="activity-delete-button"
+                    data-delete-activity="${activity.id}"
+                    title="Delete activity"
+                    aria-label="Delete activity">
+                    🗑️
+                </button>
+            `;
+
+            list.appendChild(
+                card
+            );
+        }
+    );
+}
+
+/* =====================================================
+   DELETE ONE ACTIVITY
+   ===================================================== */
+
+function deleteActivity(
+    activityId
+) {
+
+    activities =
+        activities.filter(
+            activity =>
+                activity.id !== activityId
+        );
+
+
+    saveActivities();
+
+    loadActivities();
+
+}
+
+/* =====================================================
+   ACTIVITY DELETE BUTTON
+   ===================================================== */
+
+document.addEventListener(
+    "click",
+    event => {
+
+        const deleteButton =
+            event.target.closest(
+                "[data-delete-activity]"
+            );
+
+
+        if (!deleteButton) {
+            return;
+        }
+
+
+        const activityId =
+            Number(
+                deleteButton.dataset
+                    .deleteActivity
+            );
+
+
+        deleteActivity(
+            activityId
+        );
+
+    }
+);
+
+
+
+        /* =====================================================
+           FORMAT MONEY
+           ===================================================== */
+
+        function formatMoney(
+            value
+        ) {
+
+            return new Intl.NumberFormat(
+                "en-PH",
+                {
+                    style:
+                        "currency",
+                    currency:
+                        "PHP"
+                }
+            ).format(
+                value
+            );
+
+        }
+
+
+
+        /* =====================================================
+           SAVE CART
+           ===================================================== */
+
+        function normalizeCartItem(item) {
+            if (!item || typeof item !== "object") {
+                return null;
+            }
+
+            const productId = Number(item.product_id ?? item.productId ?? item.id ?? NaN);
+            const quantity = Number(item.quantity ?? 1);
+
+            if (!Number.isFinite(productId) || productId <= 0) {
+                return null;
+            }
+
+            if (!Number.isFinite(quantity) || quantity <= 0) {
+                return null;
+            }
+
+            return {
+                ...item,
+                productId: productId,
+                product_id: productId,
+                quantity: quantity
+            };
+        }
+
+        function saveCart() {
+            cart = (Array.isArray(cart) ? cart : [])
+                .map(normalizeCartItem)
+                .filter(Boolean);
+
+            localStorage.setItem(
+                "dalareichUserCart",
+                JSON.stringify(
+                    cart
+                )
+            );
+        }
+
+
+
+        /* =====================================================
+           CART COUNT
+           ===================================================== */
+
+        function getCartCount() {
+
+            return cart.reduce(
+                (
+                    total,
+                    item
+                ) =>
+                    total +
+                    item.quantity,
+                0
+            );
+
+        }
+
+
+
+        /* =====================================================
+           UPDATE CART COUNT
+           ===================================================== */
+
+        function updateCartCount() {
+
+            const count =
+                getCartCount();
+
+
+            sidebarCartCount.textContent =
+                count;
+
+
+            headerCartCount.textContent =
+                count;
+
+        }
+
+
+
+        /* =====================================================
+   LOAD PRODUCTS FROM SUPABASE
+   ===================================================== */
+
+async function loadProducts() {
+
+    try {
+
+        const response = await fetch("/api/products", {
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            },
+            credentials: "include"
+        });
+
+        if (!response.ok) {
+            throw new Error(
+                `Unable to load products. Server returned ${response.status}.`
+            );
+        }
+
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+            throw new Error("Invalid product data returned by server.");
+        }
+
+        /*
+         * Convert the Supabase product structure
+         * into the structure used by the User Dashboard.
+         */
+        products = data.map(product => {
+
+            return {
+                id: Number(product.id),
+
+                code: product.product_code || "",
+
+                name: product.product_name || "",
+
+                category:
+                    product.category ||
+                    product.category_name ||
+                    "",
+
+                price: Number(product.price || 0),
+
+                stock: Number(
+                    product.stock_quantity || 0
+                ),
+
+                description:
+                    product.description || "",
+
+                image:
+                    product.image ||
+                    "",
+
+                reorderLevel:
+                    Number(
+                        product.reorder_level || 0
+                    ),
+
+                unit:
+                    product.unit || "unit",
+
+                batchNumber:
+                    product.batch_number || "",
+
+                expirationDate:
+                    product.expiration_date || "",
+
+                categoryId:
+                    product.category_id || null
+            };
+
+        }).filter(product =>
+            Number.isFinite(product.id) &&
+            product.id > 0
+        );
+
+
+        console.log(
+            "PRODUCTS LOADED FROM SUPABASE:",
+            products
+        );
+
+
+        /*
+         * Remove old cart items that belong to
+         * the previous demo products.
+         *
+         * Example:
+         * old demo product ID = 1
+         * real Supabase product ID = 10
+         *
+         * The old cart item must not be submitted.
+         */
+        const validProductIds = new Set(
+            products.map(product =>
+                Number(product.id)
+            )
+        );
+
+        const oldCartLength = cart.length;
+
+        cart = cart.filter(item =>
+            validProductIds.has(
+                Number(
+                    item.productId ??
+                    item.product_id
+                )
+            )
+        );
+
+        if (cart.length !== oldCartLength) {
+
+            saveCart();
+
+            console.log(
+                "Removed old/stale cart items."
+            );
+        }
+
+
+        /*
+         * Search
+         */
+        const search =
+            productSearch.value
+                .trim()
+                .toLowerCase();
+
+
+        /*
+         * Category
+         */
+        const category =
+            categoryFilter.value;
+
+
+        /*
+         * Filter products
+         */
+        const filteredProducts =
+            products.filter(product => {
+
+                const matchesSearch =
+                    product.name
+                        .toLowerCase()
+                        .includes(search);
+
+
+                const matchesCategory =
+                    category === "all" ||
+                    product.category === category;
+
+
+                return (
+                    matchesSearch &&
+                    matchesCategory
+                );
+
+            });
+
+
+        /*
+         * Clear product grid
+         */
+        productGrid.innerHTML = "";
+
+
+        /*
+         * No products
+         */
+        const noProducts =
+            document.getElementById(
+                "noProducts"
+            );
+
+
+        if (
+            filteredProducts.length === 0
+        ) {
+
+            if (noProducts) {
+                noProducts.classList.remove(
+                    "hidden"
+                );
+            }
+
+            return;
+        }
+
+
+        if (noProducts) {
+            noProducts.classList.add(
+                "hidden"
+            );
+        }
+
+
+        /*
+         * Render products
+         */
+        filteredProducts.forEach(product => {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "product-card";
+
+
+            let productVisual =
+                product.emoji ||
+                "🍫";
+
+
+            if (product.image) {
+
+                productVisual = `
+
+                    <img
+                        src="${product.image}"
+                        alt="${product.name}"
+                        onerror="
+                            this.style.display='none';
+                            this.nextElementSibling.style.display='block';
+                        "
+                    >
+
+                    <span
+                        style="
+                            display:none;
+                            font-size:70px;
+                        "
+                    >
+                        ${product.emoji || "🍫"}
+                    </span>
+
+                `;
+
+            }
+
+
+            /*
+             * Disable Add button when stock is zero
+             */
+            const outOfStock =
+                Number(product.stock) <= 0;
+
+
+            card.innerHTML = `
+
+                <div class="product-image">
+
+                    ${productVisual}
+
+                </div>
+
+
+                <div class="product-card-body">
+
+                    <span class="product-category">
+                        ${product.category}
+                    </span>
+
+
+                    <h3>
+                        ${product.name}
+                    </h3>
+
+
+                    <p>
+                        ${product.description}
+                    </p>
+
+
+                    <div class="product-card-footer">
+
+                        <strong class="product-price">
+                            ${formatMoney(
+                                product.price
+                            )}
+                        </strong>
+
+
+                        <button
+                            type="button"
+                            class="product-add-button"
+                            data-product-id="${product.id}"
+                            ${outOfStock ? "disabled" : ""}
+                        >
+                            ${outOfStock ? "Out of Stock" : "Add"}
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            productGrid.appendChild(
+                card
+            );
+
+        });
+
+
+        /*
+         * Update cart after products are loaded
+         */
+        renderCart();
+
+    } catch (error) {
+
+        console.error(
+            "LOAD PRODUCTS ERROR:",
+            error
+        );
+
+
+        productGrid.innerHTML = `
+
+            <div style="
+                grid-column: 1 / -1;
+                text-align: center;
+                padding: 40px;
+            ">
+
+                <h3>
+                    Unable to load products
+                </h3>
+
+                <p>
+                    ${error.message}
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+
+       /* =====================================================
+   ADD TO CART
+   ===================================================== */
+
+function addToCart(
+    productId,
+    quantity = 1
+) {
+
+    const numericProductId = Number(productId);
+    const product =
+        products.find(
+            item =>
+                Number(item.id) === numericProductId
+        );
+
+    if (!product) {
+        return;
+    }
+
+    const existing =
+        cart.find(
+            item =>
+                Number(item.productId ?? item.product_id ?? item.id) === numericProductId
+        );
+
+    if (existing) {
+
+        existing.quantity = Number(existing.quantity || 0) + Number(quantity || 1);
+
+    } else {
+
+        cart.push({
+
+            productId: product.id,
+            product_id: product.id,
+
+            name: product.name,
+
+            price: product.price,
+
+            quantity: Number(quantity || 1),
+
+            image: product.image
+
+        });
+
+    }
+
+    saveCart();
+
+    updateCartCount();
+
+    renderCart();
+
+    addActivity(
+        `Added ${product.name} to cart.`,
+        "🛒"
+    );
+
+    showNotification(
+        "Product added to cart."
+    );
+}
+
+
+
+    /* =====================================================
+   RENDER CART
+   ===================================================== */
+
+function renderCart() {
+
+    cartItems.innerHTML =
+        "";
+
+    if (
+        cart.length ===
+        0
+    ) {
+        document
+            .getElementById(
+                "emptyCart"
+            )
+            .classList.remove(
+                "hidden"
+            );
+    } else {
+        document
+            .getElementById(
+                "emptyCart"
+            )
+            .classList.add(
+                "hidden"
+            );
+    }
+
+    let subtotal =
+        0;
+
+    cart.forEach(
+        item => {
+            const normalized = normalizeCartItem(item);
+            if (!normalized) {
+                return;
+            }
+
+            const product =
+                products.find(
+                    p =>
+                        Number(p.id) === Number(normalized.productId)
+                );
+
+            if (!product) {
+                return;
+            }
+
+            const itemTotal =
+                product.price *
+                item.quantity;
+
+            subtotal +=
+                itemTotal;
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+            row.className =
+                "cart-item";
+
+            row.innerHTML = `
+
+                <div class="cart-product-image">
+
+                    <img
+                        src="${product.image}"
+                        alt="${product.name}">
+
+                </div>
+
+                <div class="cart-product-info">
+
+                    <span>
+                        ${product.category}
+                    </span>
+
+                    <h3>
+                        ${product.name}
+                    </h3>
+
+                    <strong>
+                        ${formatMoney(
+                            product.price
+                        )}
+                    </strong>
+
+                </div>
+
+                <div class="cart-quantity">
+
+                    <button
+                        type="button"
+                        data-cart-action="decrease"
+                        data-product-id="${product.id}">
+
+                        −
+
+                    </button>
+
+                    <span>
+                        ${item.quantity}
+                    </span>
+
+                    <button
+                        type="button"
+                        data-cart-action="increase"
+                        data-product-id="${product.id}">
+
+                        +
+
+                    </button>
+
+                </div>
+
+                <strong class="cart-item-total">
+
+                    ${formatMoney(
+                        itemTotal
+                    )}
+
+                </strong>
+
+                <button
+                    type="button"
+                    class="remove-cart-item"
+                    data-cart-action="remove"
+                    data-product-id="${product.id}">
+
+                    ×
+
+                </button>
+
+            `;
+
+            cartItems.appendChild(
+                row
+            );
+        }
+    );
+
+    const count =
+        getCartCount();
+
+    const delivery =
+        count > 0
+            ? 50
+            : 0;
+
+    const total =
+        subtotal +
+        delivery;
+
+    summaryItems.textContent =
+        count;
+
+    summarySubtotal.textContent =
+        formatMoney(
+            subtotal
+        );
+
+    summaryDelivery.textContent =
+        formatMoney(
+            delivery
+        );
+
+    summaryTotal.textContent =
+        formatMoney(
+            total
+        );
+
+    checkoutTotal.textContent =
+        formatMoney(
+            total
+        );
+
+    updateCartCount();
+}
+
+
+
+        /* =====================================================
+           CHANGE CART QUANTITY
+           ===================================================== */
+
+        function changeCartQuantity(
+            productId,
+            action
+        ) {
+
+            const item =
+                cart.find(
+                    cartItem =>
+                        cartItem.productId ===
+                        productId
+                );
+
+
+            if (!item) {
+                return;
+            }
+
+
+            const product =
+                products.find(
+                    p =>
+                        p.id ===
+                        productId
+                );
+
+
+            if (
+                action ===
+                "increase"
+            ) {
+
+                item.quantity++;
+
+            }
+
+
+            if (
+                action ===
+                "decrease"
+            ) {
+
+                item.quantity--;
+
+            }
+
+
+            if (
+                action ===
+                "remove"
+            ) {
+
+                cart =
+                    cart.filter(
+                        cartItem =>
+                            cartItem.productId !==
+                            productId
+                    );
+
+
+                if (product) {
+
+                    addActivity(
+                        `Removed ${product.name} from cart.`,
+                        "🗑️"
+                    );
+
+                }
+
+            }
+
+
+            if (
+                item.quantity <=
+                0
+            ) {
+
+                cart =
+                    cart.filter(
+                        cartItem =>
+                            cartItem.productId !==
+                            productId
+                    );
+
+            }
+
+
+            saveCart();
+
+            renderCart();
+
+        }
+
+
+
+        /* =====================================================
+           PRODUCT MODAL
+           ===================================================== */
+
+        function openProductModal(
+            product
+        ) {
+
+            selectedProduct =
+                product;
+
+
+            const modalImage =
+                document.getElementById(
+                    "modalProductImage"
+                );
+
+
+            if (
+                product.image
+            ) {
+
+                modalImage.innerHTML = `
+
+                    <img
+                        src="${product.image}"
+                        alt="${product.name}"
+                        style="
+                            max-width:100%;
+                            max-height:220px;
+                            object-fit:contain;
+                        "
+                        onerror="
+                            this.style.display='none';
+                            this.nextElementSibling.style.display='block';
+                        "
+                    >
+
+                    <span
+                        style="
+                            display:none;
+                            font-size:80px;
+                        ">
+                        ${product.emoji || "🍫"}
+                    </span>
+
+                `;
+
+            } else {
+
+                modalImage.textContent =
+                    product.emoji ||
+                    "🍫";
+
+            }
+
+
+            document
+                .getElementById(
+                    "modalProductCategory"
+                )
+                .textContent =
+                product.category;
+
+
+            document
+                .getElementById(
+                    "modalProductName"
+                )
+                .textContent =
+                product.name;
+
+
+            document
+                .getElementById(
+                    "modalProductDescription"
+                )
+                .textContent =
+                product.description;
+
+
+            document
+                .getElementById(
+                    "modalProductPrice"
+                )
+                .textContent =
+                formatMoney(
+                    product.price
+                );
+
+
+            document
+                .getElementById(
+                    "modalQuantity"
+                )
+                .value =
+                1;
+
+
+            document
+                .getElementById(
+                    "productModal"
+                )
+                .classList.remove(
+                    "hidden"
+                );
+
+        }
+
+
+
+        /* =====================================================
+           CLOSE MODALS
+           ===================================================== */
+
+        function closeModals() {
+
+            document
+                .querySelectorAll(
+                    ".modal"
+                )
+                .forEach(
+                    modal => {
+
+                        modal.classList.add(
+                            "hidden"
+                        );
+
+                    }
+                );
+
+        }
+
+
+
+        /* =====================================================
+           NOTIFICATION
+           ===================================================== */
+
+        function showNotification(
+            message
+        ) {
+
+            const notification =
+                document.getElementById(
+                    "notification"
+                );
+
+
+            const notificationMessage =
+                document.getElementById(
+                    "notificationMessage"
+                );
+
+
+            notificationMessage.textContent =
+                message;
+
+
+            notification.classList.add(
+                "show"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    notification.classList.remove(
+                        "show"
+                    );
+
+                },
+                2500
+            );
+
+        }
+
+
+        function showToast(
+            message,
+            type = "info"
+        ) {
+            showNotification(message);
+        }
+
+
+
+        /* =====================================================
+           SECTION NAVIGATION
+           ===================================================== */
+
+        function showSection(
+            sectionId
+        ) {
+
+            document
+                .querySelectorAll(
+                    ".user-section"
+                )
+                .forEach(
+                    section => {
+
+                        section.classList.remove(
+                            "active-section"
+                        );
+
+                    }
+                );
+
+
+            const section =
+                document.getElementById(
+                    sectionId
+                );
+
+
+            if (section) {
+
+                section.classList.add(
+                    "active-section"
+                );
+
+            }
+
+
+            document
+                .querySelectorAll(
+                    ".user-nav-item"
+                )
+                .forEach(
+                    button => {
+
+                        button.classList.remove(
+                            "active"
+                        );
+
+
+                        if (
+                            button.dataset.section ===
+                            sectionId
+                        ) {
+
+                            button.classList.add(
+                                "active"
+                            );
+
+                        }
+
+                    }
+                );
+
+
+            const titles = {
+
+                shopSection:
+                    [
+                        "Chocolate Shop",
+                        "Discover and order your favorite chocolates."
+                    ],
+
+                ordersSection:
+                    [
+                        "My Orders",
+                        "View your previous orders and their status."
+                    ],
+
+                activitiesSection:
+                    [
+                        "Activities",
+                        "View your recent activities on the Dalareich Chocolate House website."
+                    ],
+
+                cartSection:
+                    [
+                        "My Cart",
+                        "Review your items before placing your order."
+                    ],
+
+                reportsSection: [
+
+    "Reports",
+
+    "Tell us about a problem, complaint, or concern regarding your order or experience."
+
+]
+            };
+
+
+            if (
+                titles[sectionId]
+            ) {
+
+                document
+                    .getElementById(
+                        "pageTitle"
+                    )
+                    .textContent =
+                    titles[
+                        sectionId
+                    ][0];
+
+
+                document
+                    .getElementById(
+                        "pageSubtitle"
+                    )
+                    .textContent =
+                    titles[
+                        sectionId
+                    ][1];
+
+            }
+
+
+            if (
+                sectionId ===
+                "activitiesSection"
+            ) {
+
+                loadActivities();
+
+            }
+
+
+            window.scrollTo({
+
+                top:
+                    0,
+
+                behavior:
+                    "smooth"
+
+            });
+
+        }
+
+
+
+        /* =====================================================
+           NAVIGATION EVENTS
+           ===================================================== */
+
+        document
+            .querySelectorAll(
+                ".user-nav-item[data-section]"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            showSection(
+                                button.dataset.section
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        /* =====================================================
+           SHOP BUTTONS
+           ===================================================== */
+
+        document.addEventListener(
+            "click",
+            event => {
+
+                const addButton =
+                    event.target.closest(
+                        ".product-add-button"
+                    );
+
+
+                if (addButton) {
+
+                    const productId =
+                        Number(
+                            addButton.dataset.productId
+                        );
+
+
+                    addToCart(
+                        productId
+                    );
+
+
+                    return;
+
+                }
+
+
+                const productCard =
+                    event.target.closest(
+                        ".product-card"
+                    );
+
+
+                if (
+                    productCard &&
+                    !event.target.closest(
+                        "button"
+                    )
+                ) {
+
+                    const productId =
+                        Number(
+                            productCard
+                                .querySelector(
+                                    ".product-add-button"
+                                )
+                                .dataset
+                                .productId
+                        );
+
+
+                    const product =
+                        products.find(
+                            p =>
+                                p.id ===
+                                productId
+                        );
+
+
+                    if (product) {
+
+                        openProductModal(
+                            product
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           CATEGORY FILTER
+           ===================================================== */
+
+        categoryFilter.addEventListener(
+            "change",
+            loadProducts
+        );
+
+
+        productSearch.addEventListener(
+            "input",
+            loadProducts
+        );
+
+
+        document
+            .querySelectorAll(
+                ".category-button"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            document
+                                .querySelectorAll(
+                                    ".category-button"
+                                )
+                                .forEach(
+                                    item =>
+                                        item.classList.remove(
+                                            "active"
+                                        )
+                                );
+
+
+                            button.classList.add(
+                                "active"
+                            );
+
+
+                            categoryFilter.value =
+                                button.dataset.category;
+
+
+                            loadProducts();
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        /* =====================================================
+           CART EVENTS
+           ===================================================== */
+
+        cartItems.addEventListener(
+            "click",
+            event => {
+
+                const button =
+                    event.target.closest(
+                        "[data-cart-action]"
+                    );
+
+
+                if (!button) {
+                    return;
+                }
+
+
+                changeCartQuantity(
+
+                    Number(
+                        button.dataset.productId
+                    ),
+
+                    button.dataset.cartAction
+
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           CLEAR CART
+           ===================================================== */
+
+        document
+            .getElementById(
+                "clearCartButton"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        cart.length ===
+                        0
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    cart = [];
+
+
+                    saveCart();
+
+
+                    renderCart();
+
+
+                    addActivity(
+                        "Cleared all items from the shopping cart.",
+                        "🛒"
+                    );
+
+
+                    showNotification(
+                        "Cart cleared."
+                    );
+
+                }
+            );
+
+
+
+        /* =====================================================
+           HEADER CART
+           ===================================================== */
+
+        document
+            .getElementById(
+                "headerCartButton"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    showSection(
+                        "cartSection"
+                    );
+
+                }
+            );
+
+
+
+        /* =====================================================
+           GO TO SHOP
+           ===================================================== */
+
+        document
+            .querySelectorAll(
+                "[data-go-shop]"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            showSection(
+                                "shopSection"
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        /* =====================================================
+   MODAL CLOSE
+   ===================================================== */
+
+document
+    .querySelectorAll(".modal-close")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                closeModals();
+
+            }
+        );
+
+    });
+
+
+document
+    .querySelectorAll(".modal-overlay")
+    .forEach(overlay => {
+
+        overlay.addEventListener(
+            "click",
+            function () {
+
+                closeModals();
+
+            }
+        );
+
+    });
+
+
+
+        /* =====================================================
+           MODAL QUANTITY
+           ===================================================== */
+
+        document
+            .getElementById(
+                "modalDecreaseQuantity"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    const input =
+                        document.getElementById(
+                            "modalQuantity"
+                        );
+
+
+                    const value =
+                        Math.max(
+                            1,
+                            Number(
+                                input.value
+                            ) - 1
+                        );
+
+
+                    input.value =
+                        value;
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "modalIncreaseQuantity"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    const input =
+                        document.getElementById(
+                            "modalQuantity"
+                        );
+
+
+                    input.value =
+                        Number(
+                            input.value
+                        ) + 1;
+
+                }
+            );
+
+
+
+        /* =====================================================
+           MODAL ADD TO CART
+           ===================================================== */
+
+        document
+            .getElementById(
+                "modalAddToCart"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        !selectedProduct
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const quantity =
+                        Math.max(
+                            1,
+                            Number(
+                                document
+                                    .getElementById(
+                                        "modalQuantity"
+                                    )
+                                    .value
+                            )
+                        );
+
+
+                    addToCart(
+                        selectedProduct.id,
+                        quantity
+                    );
+
+
+                    closeModals();
+
+                }
+            );
+
+
+
+        /* =====================================================
+           CHECKOUT
+           ===================================================== */
+
+        document
+            .getElementById(
+                "checkoutButton"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        cart.length ===
+                        0
+                    ) {
+
+                        showNotification(
+                            "Your cart is empty."
+                        );
+
+
+                        return;
+
+                    }
+
+
+                    document
+                        .getElementById(
+                            "checkoutModal"
+                        )
+                        .classList.remove(
+                            "hidden"
+                        );
+
+                }
+            );
+
+        document
+            .getElementById("checkoutForm")
+            .addEventListener("submit", placeOrder);
+
+
+    async function placeOrder(event) {
+    event.preventDefault();
+
+    console.log("=================================");
+    console.log("PLACE ONLINE ORDER STARTED");
+    console.log("=================================");
+
+    if (!currentUser || !currentUser.id) {
+        showToast(
+            "Your login session has expired. Please log in again.",
+            "error"
+        );
+        return;
+    }
+
+    if (!Array.isArray(cart) || cart.length === 0) {
+        showToast("Your cart is empty.", "error");
+        return;
+    }
+
+    const customerName =
+        document.getElementById("customerName")?.value.trim() || "";
+
+    const customerPhone =
+        document.getElementById("customerPhone")?.value.trim() || "";
+
+    const deliveryAddress =
+        document.getElementById("deliveryAddress")?.value.trim() || "";
+
+    const orderType =
+        document.getElementById("orderType")?.value || "Delivery";
+
+    const paymentMethod =
+        document.getElementById("paymentMethod")?.value || "Cash";
+
+    if (!customerName) {
+        showToast("Please enter your name.", "error");
+        return;
+    }
+
+    if (!customerPhone) {
+        showToast("Please enter your contact number.", "error");
+        return;
+    }
+
+    if (orderType === "Delivery" && !deliveryAddress) {
+        showToast("Please enter your delivery address.", "error");
+        return;
+    }
+
+    let subtotal = 0;
+    const orderItems = [];
+
+    for (const item of cart) {
+        const normalized = normalizeCartItem(item);
+
+        if (!normalized) {
+            console.error(
+                "Invalid cart item:",
+                item
+            );
+            continue;
+        }
+
+        const productId =
+            Number(
+                normalized.product_id ??
+                normalized.productId
+            );
+
+        const product =
+            products.find(
+                p =>
+                    Number(p.id) === productId
+            );
+
+        if (!product) {
+            console.error(
+                "Product not found:",
+                productId
+            );
+            continue;
+        }
+
+        const quantity =
+            Number(normalized.quantity);
+
+        const price =
+            Number(product.price);
+
+        if (
+            !Number.isFinite(quantity) ||
+            quantity <= 0
+        ) {
+            continue;
+        }
+
+        if (
+            !Number.isFinite(price) ||
+            price < 0
+        ) {
+            continue;
+        }
+
+        const itemSubtotal =
+            price * quantity;
+
+        subtotal += itemSubtotal;
+
+        orderItems.push({
+            product_id: Number(product.id),
+            product_name: product.name,
+            price: price,
+            quantity: quantity,
+            subtotal: itemSubtotal
+        });
+    }
+
+    if (orderItems.length === 0) {
+        showToast(
+            "Unable to create the order because the products in your cart could not be found.",
+            "error"
+        );
+        return;
+    }
+
+    const deliveryAmount =
+        orderType === "Delivery"
+            ? 50
+            : 0;
+
+    const totalAmount =
+        subtotal + deliveryAmount;
+
+    /*
+     * Generate a unique online order ID.
+     */
+    const orderId =
+        "ORD-" +
+        Date.now() +
+        "-" +
+        Math.floor(
+            Math.random() * 1000
+        );
+
+    const orderData = {
+        id: orderId,
+
+        user_id:
+            String(currentUser.id),
+
+        date:
+            new Date().toISOString(),
+
+        status:
+            "Pending",
+
+        customer:
+            customerName,
+
+        phone:
+            customerPhone,
+
+        address:
+            orderType === "Delivery"
+                ? deliveryAddress
+                : "",
+
+        payment:
+            paymentMethod,
+
+        order_type:
+            orderType,
+
+        items:
+            orderItems,
+
+        subtotal:
+            subtotal,
+
+        delivery:
+            deliveryAmount,
+
+        total:
+            totalAmount
+    };
+
+    console.log(
+        "ONLINE ORDER BEING SENT:",
+        orderData
+    );
+
+    const submitButton =
+        document.querySelector(
+            "#checkoutForm .checkout-submit"
+        );
+
+    if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent =
+            "Placing Order...";
+    }
+
+    try {
+
+        /*
+         * IMPORTANT:
+         * Online customer orders use /api/orders.
+         * They do NOT use /api/sales.
+         */
+        const response =
+            await fetch(
+                "/api/orders",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json",
+
+                        "Accept":
+                            "application/json"
+                    },
+
+                    credentials:
+                        "include",
+
+                    body:
+                        JSON.stringify(
+                            orderData
+                        )
+                }
+            );
+
+        console.log(
+            "ORDER SERVER STATUS:",
+            response.status
+        );
+
+        let result = {};
+
+        try {
+            result =
+                await response.json();
+        } catch (jsonError) {
+            console.warn(
+                "Server did not return JSON."
+            );
+        }
+
+        console.log(
+            "ORDER SERVER RESPONSE:",
+            result
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                result.error ||
+                result.message ||
+                `Order failed. Server returned ${response.status}.`
+            );
+        }
+
+        /*
+         * Clear cart only after the database
+         * confirms that the order was saved.
+         */
+        cart = [];
+
+        saveCart();
+
+        updateCartCount();
+
+        renderCart();
+
+        const checkoutForm =
+            document.getElementById(
+                "checkoutForm"
+            );
+
+        if (checkoutForm) {
+            checkoutForm.reset();
+        }
+
+        closeModals();
+
+        showToast(
+            `Order ${orderId} submitted successfully!`,
+            "success"
+        );
+
+        /*
+         * Reload orders directly from Supabase
+         * through Flask.
+         */
+        await loadOrders();
+
+        showSection(
+            "ordersSection"
+        );
+
+        console.log(
+            "ONLINE ORDER SAVED SUCCESSFULLY."
+        );
+
+    } catch (error) {
+
+        console.error(
+            "================================="
+        );
+
+        console.error(
+            "ONLINE ORDER SUBMISSION ERROR"
+        );
+
+        console.error(
+            error
+        );
+
+        console.error(
+            "================================="
+        );
+
+        showToast(
+            error.message ||
+            "Unable to place order. Please try again.",
+            "error"
+        );
+
+    } finally {
+
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent =
+                "Place Order";
+        }
+    }
+}
+
+
+        /* =====================================================
+   LOAD ORDERS
+   ===================================================== */
+
+async function loadOrders(status = "all") {
+
+    const list =
+        document.getElementById(
+            "ordersList"
+        );
+
+    const empty =
+        document.getElementById(
+            "noOrders"
+        );
+
+    if (!list || !empty) {
+        return;
+    }
+
+    if (!currentUser || !currentUser.id) {
+        list.innerHTML = "";
+        empty.classList.remove("hidden");
+        return;
+    }
+
+    try {
+
+        list.innerHTML = `
+            <div style="
+                text-align:center;
+                padding:30px;
+            ">
+                Loading your orders...
+            </div>
+        `;
+
+        let url =
+            `/api/orders?user_id=${encodeURIComponent(
+                currentUser.id
+            )}`;
+
+        if (
+            status &&
+            status !== "all"
+        ) {
+            url +=
+                `&status=${encodeURIComponent(
+                    status
+                )}`;
+        }
+
+        const response =
+            await fetch(
+                url,
+                {
+                    method: "GET",
+
+                    headers: {
+                        "Accept":
+                            "application/json"
+                    },
+
+                    credentials:
+                        "include"
+                }
+            );
+
+        const result =
+            await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                result.error ||
+                result.message ||
+                `Unable to load orders. Server returned ${response.status}.`
+            );
+        }
+
+        const orders =
+            Array.isArray(result)
+                ? result
+                : Array.isArray(result.orders)
+                    ? result.orders
+                    : [];
+
+        list.innerHTML = "";
+
+        if (orders.length === 0) {
+            empty.classList.remove(
+                "hidden"
+            );
+            return;
+        }
+
+        empty.classList.add(
+            "hidden"
+        );
+
+        orders.forEach(
+            order => {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+                card.className =
+                    "order-card";
+
+                const safeStatus =
+                    String(
+                        order.status ||
+                        "Pending"
+                    );
+
+                const safeStatusClass =
+                    safeStatus
+                        .toLowerCase()
+                        .replace(
+                            /[^a-z0-9_-]/g,
+                            "-"
+                        );
+
+                const orderItems =
+                    Array.isArray(
+                        order.items
+                    )
+                        ? order.items
+                        : [];
+
+                const itemCount =
+                    orderItems.reduce(
+                        (
+                            total,
+                            item
+                        ) =>
+                            total +
+                            Number(
+                                item.quantity ||
+                                0
+                            ),
+                        0
+                    );
+
+                const total =
+                    Number(
+                        order.total ||
+                        0
+                    );
+
+                let actionButton = "";
+
+                /*
+                 * Pending:
+                 * Customer can cancel.
+                 */
+                if (
+                    safeStatus ===
+                    "Pending"
+                ) {
+
+                    actionButton = `
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            data-cancel-order="${escapeHtml(
+                                String(order.id)
+                            )}">
+                            Cancel Order
+                        </button>
+                    `;
+                }
+
+                /*
+                 * Processing:
+                 * Customer can confirm delivery.
+                 */
+                else if (
+                    safeStatus ===
+                    "Processing"
+                ) {
+
+                    actionButton = `
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            data-complete-order="${escapeHtml(
+                                String(order.id)
+                            )}">
+                            Mark as Delivered
+                        </button>
+                    `;
+                }
+
+                card.innerHTML = `
+                    <div class="order-main">
+
+                        <div>
+
+                            <span class="order-label">
+                                ORDER
+                            </span>
+
+                            <h3>
+                                ${escapeHtml(
+                                    String(
+                                        order.id ||
+                                        "Order"
+                                    )
+                                )}
+                            </h3>
+
+                            <p>
+                                ${escapeHtml(
+                                    String(
+                                        order.date ||
+                                        ""
+                                    )
+                                )}
+                            </p>
+
+                        </div>
+
+                        <span
+                            class="order-status status-${safeStatusClass}">
+                            ${escapeHtml(
+                                safeStatus
+                            )}
+                        </span>
+
+                    </div>
+
+                    <div class="order-bottom">
+
+                        <span>
+                            ${itemCount}
+                            item(s)
+                        </span>
+
+                        <strong>
+                            ${formatMoney(
+                                total
+                            )}
+                        </strong>
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            data-view-order="${escapeHtml(
+                                String(order.id)
+                            )}">
+                            View Details
+                        </button>
+
+                        ${actionButton}
+
+                    </div>
+                `;
+
+                list.appendChild(
+                    card
+                );
+            }
+        );
+
+    } catch (error) {
+
+        console.error(
+            "LOAD ORDERS ERROR:",
+            error
+        );
+
+        list.innerHTML = `
+            <div style="
+                text-align:center;
+                padding:30px;
+            ">
+                <h3>
+                    Unable to load orders
+                </h3>
+
+                <p>
+                    ${escapeHtml(
+                        error.message
+                    )}
+                </p>
+            </div>
+        `;
+
+        empty.classList.add(
+            "hidden"
+        );
+    }
+}
+
+
+        /* =====================================================
+           ORDER FILTERS
+           ===================================================== */
+
+        document
+            .querySelectorAll(
+                ".order-filter"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            document
+                                .querySelectorAll(
+                                    ".order-filter"
+                                )
+                                .forEach(
+                                    item =>
+                                        item.classList.remove(
+                                            "active"
+                                        )
+                                );
+
+
+                            button.classList.add(
+                                "active"
+                            );
+
+
+                            loadOrders(
+                                button.dataset.status
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        /* =====================================================
+   VIEW ORDER DETAILS
+   ===================================================== */
+
+document.addEventListener(
+    "click",
+    async event => {
+
+        const button =
+            event.target.closest(
+                "[data-view-order]"
+            );
+
+        if (!button) {
+            return;
+        }
+
+        const orderId =
+            button.dataset.viewOrder;
+
+        if (!orderId) {
+            return;
+        }
+
+        try {
+
+            const response =
+                await fetch(
+                    `/api/orders/${encodeURIComponent(
+                        orderId
+                    )}`,
+                    {
+                        method: "GET",
+
+                        headers: {
+                            "Accept":
+                                "application/json"
+                        },
+
+                        credentials:
+                            "include"
+                    }
+                );
+
+            const result =
+                await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    result.error ||
+                    result.message ||
+                    "Unable to load order details."
+                );
+            }
+
+            const order =
+                result.order ||
+                result;
+
+            const title =
+                document.getElementById(
+                    "orderDetailsTitle"
+                );
+
+            if (title) {
+                title.textContent =
+                    order.id ||
+                    orderId;
+            }
+
+            const content =
+                document.getElementById(
+                    "orderDetailsContent"
+                );
+
+            if (!content) {
+                return;
+            }
+
+            const orderItems =
+                Array.isArray(
+                    order.items
+                )
+                    ? order.items
+                    : [];
+
+            content.innerHTML = `
+
+                <div class="order-detail-summary">
+
+                    <div>
+                        <span>
+                            Status
+                        </span>
+
+                        <strong>
+                            ${escapeHtml(
+                                String(
+                                    order.status ||
+                                    "Pending"
+                                )
+                            )}
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>
+                            Date
+                        </span>
+
+                        <strong>
+                            ${escapeHtml(
+                                String(
+                                    order.date ||
+                                    ""
+                                )
+                            )}
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>
+                            Payment
+                        </span>
+
+                        <strong>
+                            ${escapeHtml(
+                                String(
+                                    order.payment ||
+                                    "Cash"
+                                )
+                            )}
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>
+                            Customer
+                        </span>
+
+                        <strong>
+                            ${escapeHtml(
+                                String(
+                                    order.customer ||
+                                    ""
+                                )
+                            )}
+                        </strong>
+                    </div>
+
+                </div>
+
+                <div class="order-detail-items">
+
+                    <h3>
+                        Items
+                    </h3>
+
+                    ${
+                        orderItems.length === 0
+                            ? `
+                                <p>
+                                    No items found.
+                                </p>
+                              `
+                            :
+                        orderItems.map(
+                            item => {
+
+                                const quantity =
+                                    Number(
+                                        item.quantity ||
+                                        0
+                                    );
+
+                                const price =
+                                    Number(
+                                        item.price ||
+                                        0
+                                    );
+
+                                const itemSubtotal =
+                                    Number(
+                                        item.subtotal ??
+                                        (
+                                            price *
+                                            quantity
+                                        )
+                                    );
+
+                                return `
+                                    <div
+                                        class="order-detail-item">
+
+                                        <span>
+                                            ${escapeHtml(
+                                                String(
+                                                    item.product_name ||
+                                                    item.name ||
+                                                    "Product"
+                                                )
+                                            )}
+
+                                            ×
+                                            ${quantity}
+                                        </span>
+
+                                        <strong>
+                                            ${formatMoney(
+                                                itemSubtotal
+                                            )}
+                                        </strong>
+
+                                    </div>
+                                `;
+                            }
+                        ).join("")
+                    }
+
+                </div>
+
+                <div class="order-detail-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong>
+                        ${formatMoney(
+                            Number(
+                                order.total ||
+                                0
+                            )
+                        )}
+                    </strong>
+
+                </div>
+            `;
+
+            document
+                .getElementById(
+                    "orderDetailsModal"
+                )
+                ?.classList.remove(
+                    "hidden"
+                );
+
+        } catch (error) {
+
+            console.error(
+                "VIEW ORDER ERROR:",
+                error
+            );
+
+            showToast(
+                error.message ||
+                "Unable to load order details.",
+                "error"
+            );
+        }
+    }
+);
+
+/* =====================================================
+   CANCEL ORDER
+   ===================================================== */
+
+async function cancelOrder(orderId) {
+
+    if (!orderId) {
+        return;
+    }
+
+    const confirmed =
+        window.confirm(
+            "Are you sure you want to cancel this order?"
+        );
+
+    if (!confirmed) {
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch(
+                `/api/orders/${encodeURIComponent(
+                    orderId
+                )}/status`,
+                {
+                    method: "PATCH",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json",
+
+                        "Accept":
+                            "application/json"
+                    },
+
+                    credentials:
+                        "include",
+
+                    body:
+                        JSON.stringify({
+                            status:
+                                "Cancelled",
+
+                            user_id:
+                                currentUser.id
+                        })
+                }
+            );
+
+        const result =
+            await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                result.error ||
+                result.message ||
+                "Unable to cancel order."
+            );
+        }
+
+        showToast(
+            "Order cancelled successfully.",
+            "success"
+        );
+
+        await loadOrders();
+
+    } catch (error) {
+
+        console.error(
+            "CANCEL ORDER ERROR:",
+            error
+        );
+
+        showToast(
+            error.message ||
+            "Unable to cancel order.",
+            "error"
+        );
+    }
+}
+
+
+/* =====================================================
+   MARK ORDER AS DELIVERED
+   ===================================================== */
+
+async function markOrderDelivered(
+    orderId
+) {
+
+    if (!orderId) {
+        return;
+    }
+
+    const confirmed =
+        window.confirm(
+            "Confirm that you have received this order?"
+        );
+
+    if (!confirmed) {
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch(
+                `/api/orders/${encodeURIComponent(
+                    orderId
+                )}/status`,
+                {
+                    method: "PATCH",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json",
+
+                        "Accept":
+                            "application/json"
+                    },
+
+                    credentials:
+                        "include",
+
+                    body:
+                        JSON.stringify({
+                            status:
+                                "Completed",
+
+                            user_id:
+                                currentUser.id
+                        })
+                }
+            );
+
+        const result =
+            await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                result.error ||
+                result.message ||
+                "Unable to update order."
+            );
+        }
+
+        showToast(
+            "Order marked as delivered.",
+            "success"
+        );
+
+        await loadOrders();
+
+    } catch (error) {
+
+        console.error(
+            "COMPLETE ORDER ERROR:",
+            error
+        );
+
+        showToast(
+            error.message ||
+            "Unable to mark order as delivered.",
+            "error"
+        );
+    }
+}
+
+
+/* =====================================================
+   ORDER ACTION BUTTONS
+   ===================================================== */
+
+document.addEventListener(
+    "click",
+    event => {
+
+        const cancelButton =
+            event.target.closest(
+                "[data-cancel-order]"
+            );
+
+        if (cancelButton) {
+
+            cancelOrder(
+                cancelButton.dataset
+                    .cancelOrder
+            );
+
+            return;
+        }
+
+        const completeButton =
+            event.target.closest(
+                "[data-complete-order]"
+            );
+
+        if (completeButton) {
+
+            markOrderDelivered(
+                completeButton.dataset
+                    .completeOrder
+            );
+        }
+    }
+);
+        
+
+
+
+        /* =====================================================
+           LOGOUT
+           ===================================================== */
+
+        document
+            .getElementById(
+                "logoutButton"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    addActivity(
+                        "Logged out of the account.",
+                        "🚪"
+                    );
+
+
+                    localStorage.removeItem(
+                        "dalareichCurrentUser"
+                    );
+
+
+                    /*
+                     * Change this filename if your
+                     * sign-in page has a different name.
+                     */
+
+                    window.location.href =
+                        "index.html";
+
+                }
+            );
+
+
+
+        /* =====================================================
+   INITIALIZE
+   ===================================================== */
+
+async function initializeDashboard() {
+
+    await loadProducts();
+
+    renderCart();
+
+    await loadOrders();
+
+    loadActivities();
+
+    loadUserProfile();
+}
+
+initializeDashboard();
+
+    </script>
+
+</body>
+</html>
